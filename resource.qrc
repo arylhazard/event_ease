@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/resource">
+        <file>img/_d2c400d3-68a4-4544-bea0-9303c338e05f.jpeg</file>
+        <file>img/user.jpeg</file>
+        <file>img/user-sign-white-icon-vector-15479703.jpg</file>
+    </qresource>
+</RCC>
