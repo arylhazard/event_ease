@@ -7,12 +7,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap pix("C:/Users/LENOVO/Desktop/Picture2.png");
+    QPixmap pix("C:/Users/LENOVO/Desktop/_d2c400d3-68a4-4544-bea0-9303c338e05f.jpeg");
     int w = ui->pic->width();
     int h = ui->pic->height();
-    ui->pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
-
-
+    ui->pic->setFixedHeight(h);
+    ui->pic->setFixedWidth(w);
 }
 
 MainWindow::~MainWindow()
@@ -21,13 +20,24 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_pushButton_signup_clicked()
+void MainWindow::on_pushButton_login_clicked()
 {
-//    login login;
-//    login.setModal(true);
-//    login.exec();
+    //    login login;
+    //    login.setModal(true);
+    //    login.exec();
     hide();
     login = new class login(this);
     login->show();
+}
+
+
+void MainWindow::on_pushButton_signup_clicked()
+{
+    //    login login;
+    //    login.setModal(true);
+    //    login.exec();
+    hide();
+    Signup = new class Signup(this);
+    Signup->show();
 }
 
