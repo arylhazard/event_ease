@@ -46,9 +46,9 @@ border-radius: 20px;</string>
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>79</y>
+      <y>89</y>
       <width>280</width>
-      <height>371</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -63,7 +63,7 @@ border-radius:15px;</string>
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>40</y>
+      <y>50</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -88,13 +88,26 @@ font: 700 20pt &quot;Myriad Pro Cond&quot;;
       <height>24</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(5,77,101,0);
-font: 700 12pt &quot;Myriad Pro Cond&quot;;
+     <string notr="true">QPushButton
+{
+border: none;
+color: rgba(255,255,255,255);
+background-color: rgb(5, 77, 101);
+font : 700 12pt &quot;Myriad Pro Cond&quot;;
+}
 
-border-bottom: 2px solid rgba(225,228,225,255);
-color: rgba(255,255,255,230);
+QPushButton:Hover
+{
 
+	background-color: rgb(30, 104, 154);
+}
 </string>
     </property>
     <property name="text">
@@ -245,7 +258,8 @@ font: 700 11pt &quot;Myriad Pro Cond&quot;;
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 700 11pt &quot;Myriad Pro Cond&quot;;
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 700 11pt &quot;Myriad Pro Cond&quot;;
 color: rgba(255,255,255,255);</string>
     </property>
     <property name="text">
@@ -262,8 +276,9 @@ color: rgba(255,255,255,255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 700 11pt &quot;Myriad Pro Cond&quot;;
-color: rgba(255,255,255,255)</string>
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 700 11pt &quot;Myriad Pro Cond&quot;;
+color: rgba(255,255,255,255);</string>
     </property>
     <property name="text">
      <string>Mail*</string>
@@ -279,8 +294,9 @@ color: rgba(255,255,255,255)</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 700 11pt &quot;Myriad Pro Cond&quot;;
-color: rgba(255,255,255,255)</string>
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 700 11pt &quot;Myriad Pro Cond&quot;;
+color: rgba(255,255,255,255);</string>
     </property>
     <property name="text">
      <string>Password*</string>
@@ -296,11 +312,37 @@ color: rgba(255,255,255,255)</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 700 11pt &quot;Myriad Pro Cond&quot;;
-color: rgba(255,255,255,255)</string>
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 700 11pt &quot;Myriad Pro Cond&quot;;
+color: rgba(255,255,255,255);</string>
     </property>
     <property name="text">
      <string>Re-enter Password*</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_back1">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>50</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="tabletTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/resource/img/backarrow.jpeg);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

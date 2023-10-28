@@ -2,11 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "login.h"
-#include "signup.h"
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+
+class login; // Forward declaration for login class
+class Signup; // Forward declaration for Signup class
+
+namespace Ui {
+class MainWindow;
+}
 
 class MainWindow : public QMainWindow
 {
@@ -16,15 +18,18 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void showLoginDialog();
+    void returnToMainWindow(); // Declare returnToMainWindow
+
 private slots:
     void on_pushButton_signup_clicked();
-
     void on_pushButton_login_clicked();
 
 private:
     Ui::MainWindow *ui;
-    login *login;
-
-    Signup *Signup;
+    login* loginDialog;
+    Signup* signupDialog; // Declare signupDialog
 };
+
 #endif // MAINWINDOW_H
