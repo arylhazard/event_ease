@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>496</height>
+    <width>600</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="cursor">
@@ -23,143 +23,165 @@
    <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>-20</x>
-      <y>-20</y>
-      <width>370</width>
-      <height>470</height>
-     </rect>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-image:/resource/img/_d2c400d3-68a4-4544-bea0-9303c338e05f.jpeg</string>
+    <property name="leftMargin">
+     <number>0</number>
     </property>
-    <widget class="QLabel" name="pic">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>40</y>
-       <width>300</width>
-       <height>420</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-image: url(:/resource/img/_d2c400d3-68a4-4544-bea0-9303c338e05f.jpeg);
-border-radius: 20px;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>60</y>
-       <width>280</width>
-       <height>390</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgba(0,0,0,100);
-border-radius:15px;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>80</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgba(0,0,0,0);
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="pic">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>-2</y>
+         <width>600</width>
+         <height>500</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/resource/img/_d2c400d3-68a4-4544-bea0-9303c338e05f.jpeg);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>50</y>
+         <width>521</width>
+         <height>411</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: rgba(0,0,0,100);
+border-radius:20px;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_login">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>380</y>
+         <width>80</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+border: none;
+color: rgba(255,255,255,255);
+background-color: rgb(5, 77, 101);
+font : 700 12pt &quot;Myriad Pro Cond&quot;;
+}
+
+QPushButton:Hover
+{
+
+	background-color: rgb(30, 104, 154);
+}
+</string>
+       </property>
+       <property name="text">
+        <string>LOGIN</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_signup">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>380</y>
+         <width>80</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+border: none;
+color: rgba(255,255,255,255);
+background-color: rgb(5, 77, 101);
+font : 700 12pt &quot;Myriad Pro Cond&quot;;
+}
+
+QPushButton:Hover
+{
+
+	background-color: rgb(30, 104, 154);
+}
+</string>
+       </property>
+       <property name="text">
+        <string>SIGN UP</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>0</y>
+         <width>91</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0,0,0,0);
 color: rgba(255,255,255,255);
 
 font: 700 20pt &quot;Myriad Pro Cond&quot;;
 </string>
-     </property>
-     <property name="text">
-      <string>WELCOME</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_login">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>380</y>
-       <width>80</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton
-{
-border: none;
+       </property>
+       <property name="text">
+        <string>WELCOME</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>50</y>
+         <width>351</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0,0,0,0);
 color: rgba(255,255,255,255);
-background-color: rgb(5, 77, 101);
-font : 700 12pt &quot;Myriad Pro Cond&quot;;
-}
 
-QPushButton:Hover
-{
-
-	background-color: rgb(30, 104, 154);
-}
+font: 700 14pt &quot;Myriad Pro Cond&quot;;
 </string>
-     </property>
-     <property name="text">
-      <string>LOGIN</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_signup">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>380</y>
-       <width>80</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton
-{
-border: none;
-color: rgba(255,255,255,255);
-background-color: rgb(5, 77, 101);
-font : 700 12pt &quot;Myriad Pro Cond&quot;;
-}
-
-QPushButton:Hover
-{
-
-	background-color: rgb(30, 104, 154);
-}
-</string>
-     </property>
-     <property name="text">
-      <string>SIGN UP</string>
-     </property>
-    </widget>
-   </widget>
+       </property>
+       <property name="text">
+        <string>&quot;Your Time, Your Way: Simplify Life with Event Ease!&quot;</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>320</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

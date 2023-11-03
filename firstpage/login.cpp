@@ -10,6 +10,15 @@ login::login(QWidget *parent, MainWindow* mainWindow) :
 {
     ui->setupUi(this);
     connect(ui->pushButton_back, &QPushButton::clicked, this, &login::on_pushButton_back_clicked);
+    QIcon userIcon(":/resource/img/user.png"); // Provide the path to your user icon
+    ui->user->addAction(userIcon, QLineEdit::LeadingPosition);
+    ui->user->setClearButtonEnabled(true); // Enable the clear button with the icon
+
+    QIcon passIcon(":/resource/img/lock.png"); // Provide the path to your user icon
+    ui->pass->addAction(passIcon, QLineEdit::LeadingPosition);
+    ui->pass->setClearButtonEnabled(true); // Enable the clear button with the icon
+
+
 }
 
 
