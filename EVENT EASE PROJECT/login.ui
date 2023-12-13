@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>login</class>
+ <widget class="QDialog" name="login">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>500</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>521</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgba(0,0,0,100);
+border-radius:20px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>601</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>550</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/resource/img/_d2c400d3-68a4-4544-bea0-9303c338e05f.jpeg);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>10</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0,0,0,0);
+color: rgba(255,255,255,255);
+
+font: 700 20pt &quot;Myriad Pro Cond&quot;;
+</string>
+    </property>
+    <property name="text">
+     <string>LOGIN</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>90</y>
+      <width>281</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgba(0,0,0,0);
+border:none;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="pushButton_done">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>290</y>
+       <width>61</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+border: none;
+color: rgba(255,255,255,255);
+background-color: rgb(5, 77, 101);
+font : 700 12pt &quot;Myriad Pro Cond&quot;;
+}
+
+QPushButton:Hover
+{
+
+	background-color: rgb(30, 104, 154);
+}
+</string>
+     </property>
+     <property name="text">
+      <string>DONE</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>10</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/resource/img/user.jpeg);
+border-radius:60px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="user">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>170</y>
+       <width>171</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(0,0,0,0);
+border: none;
+border-bottom: 2px solid rgba(225,228,225,255);
+color: rgba(255,255,255,230);
+padding-bottom: 7px;
+font-color:rgba(255,255,255,210);
+font: 700 11pt &quot;Myriad Pro Cond&quot;;
+</string>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="pass">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>220</y>
+       <width>171</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(0,0,0,0);
+border: none;
+border-bottom: 2px solid rgba(225,228,225,255);
+color: rgba(255,255,255,230);
+padding-bottom: 7px;
+font-color:rgba(255,255,255,210);
+font: 700 11pt &quot;Myriad Pro Cond&quot;;
+</string>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+     <property name="placeholderText">
+      <string>Password</string>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelMessage">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>269</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>label_3</zorder>
+    <zorder>user</zorder>
+    <zorder>pass</zorder>
+    <zorder>pushButton_done</zorder>
+    <zorder>labelMessage</zorder>
+   </widget>
+   <widget class="QPushButton" name="pushButton_back">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>35</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+border-image: url(:/resource/img/backarrow.jpeg);
+}
+QPushButton:Hover
+{
+	
+	border-image: url(:/resource/img/jkbjkbe.jpeg);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>frame_2</zorder>
+   <zorder>label_4</zorder>
+   <zorder>pushButton_back</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
