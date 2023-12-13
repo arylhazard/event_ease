@@ -1,0 +1,228 @@
+{
+  "metadata": {
+    "nepaliDate": [
+      "Baisakh",
+      "1999"
+    ],
+    "enBeginning": [
+      "Apr",
+      "1942"
+    ],
+    "enEnding": [
+      "May",
+      "1942"
+    ]
+  },
+  "days": [
+    {
+      "nepaliDay": "",
+      "englishDay": "",
+      "isHoliday": false,
+      "dayCount": 1
+    },
+    {
+      "nepaliDay": "1",
+      "englishDay": "13",
+      "isHoliday": false,
+      "dayCount": 2
+    },
+    {
+      "nepaliDay": "2",
+      "englishDay": "14",
+      "isHoliday": false,
+      "dayCount": 3
+    },
+    {
+      "nepaliDay": "3",
+      "englishDay": "15",
+      "isHoliday": false,
+      "dayCount": 4
+    },
+    {
+      "nepaliDay": "4",
+      "englishDay": "16",
+      "isHoliday": false,
+      "dayCount": 5
+    },
+    {
+      "nepaliDay": "5",
+      "englishDay": "17",
+      "isHoliday": false,
+      "dayCount": 6
+    },
+    {
+      "nepaliDay": "6",
+      "englishDay": "18",
+      "isHoliday": true,
+      "dayCount": 7
+    },
+    {
+      "nepaliDay": "7",
+      "englishDay": "19",
+      "isHoliday": false,
+      "dayCount": 1
+    },
+    {
+      "nepaliDay": "8",
+      "englishDay": "20",
+      "isHoliday": false,
+      "dayCount": 2
+    },
+    {
+      "nepaliDay": "9",
+      "englishDay": "21",
+      "isHoliday": false,
+      "dayCount": 3
+    },
+    {
+      "nepaliDay": "10",
+      "englishDay": "22",
+      "isHoliday": false,
+      "dayCount": 4
+    },
+    {
+      "nepaliDay": "11",
+      "englishDay": "23",
+      "isHoliday": false,
+      "dayCount": 5
+    },
+    {
+      "nepaliDay": "12",
+      "englishDay": "24",
+      "isHoliday": false,
+      "dayCount": 6
+    },
+    {
+      "nepaliDay": "13",
+      "englishDay": "25",
+      "isHoliday": true,
+      "dayCount": 7
+    },
+    {
+      "nepaliDay": "14",
+      "englishDay": "26",
+      "isHoliday": false,
+      "dayCount": 1
+    },
+    {
+      "nepaliDay": "15",
+      "englishDay": "27",
+      "isHoliday": false,
+      "dayCount": 2
+    },
+    {
+      "nepaliDay": "16",
+      "englishDay": "28",
+      "isHoliday": false,
+      "dayCount": 3
+    },
+    {
+      "nepaliDay": "17",
+      "englishDay": "29",
+      "isHoliday": false,
+      "dayCount": 4
+    },
+    {
+      "nepaliDay": "18",
+      "englishDay": "30",
+      "isHoliday": false,
+      "dayCount": 5
+    },
+    {
+      "nepaliDay": "19",
+      "englishDay": "01",
+      "isHoliday": false,
+      "dayCount": 6
+    },
+    {
+      "nepaliDay": "20",
+      "englishDay": "02",
+      "isHoliday": true,
+      "dayCount": 7
+    },
+    {
+      "nepaliDay": "21",
+      "englishDay": "03",
+      "isHoliday": false,
+      "dayCount": 1
+    },
+    {
+      "nepaliDay": "22",
+      "englishDay": "04",
+      "isHoliday": false,
+      "dayCount": 2
+    },
+    {
+      "nepaliDay": "23",
+      "englishDay": "05",
+      "isHoliday": false,
+      "dayCount": 3
+    },
+    {
+      "nepaliDay": "24",
+      "englishDay": "06",
+      "isHoliday": false,
+      "dayCount": 4
+    },
+    {
+      "nepaliDay": "25",
+      "englishDay": "07",
+      "isHoliday": false,
+      "dayCount": 5
+    },
+    {
+      "nepaliDay": "26",
+      "englishDay": "08",
+      "isHoliday": false,
+      "dayCount": 6
+    },
+    {
+      "nepaliDay": "27",
+      "englishDay": "09",
+      "isHoliday": true,
+      "dayCount": 7
+    },
+    {
+      "nepaliDay": "28",
+      "englishDay": "10",
+      "isHoliday": false,
+      "dayCount": 1
+    },
+    {
+      "nepaliDay": "29",
+      "englishDay": "11",
+      "isHoliday": false,
+      "dayCount": 2
+    },
+    {
+      "nepaliDay": "30",
+      "englishDay": "12",
+      "isHoliday": false,
+      "dayCount": 3
+    },
+    {
+      "nepaliDay": "31",
+      "englishDay": "13",
+      "isHoliday": false,
+      "dayCount": 4
+    },
+    {
+      "nepaliDay": "",
+      "englishDay": "",
+      "isHoliday": false,
+      "dayCount": 5
+    },
+    {
+      "nepaliDay": "",
+      "englishDay": "",
+      "isHoliday": false,
+      "dayCount": 6
+    },
+    {
+      "nepaliDay": "",
+      "englishDay": "",
+      "isHoliday": true,
+      "dayCount": 7
+    }
+  ]
+}
