@@ -1,5 +1,5 @@
 # Event Ease
-# Project Update
+# Project Update(inside mainCal folder)
 
 The code and data have been updated. Please note that the program may not work with the default build settings in Qt Creator. 
 
