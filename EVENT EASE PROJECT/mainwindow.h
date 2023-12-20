@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include "login.h"
 class login; // Forward declaration for login class
 class Signup; // Forward declaration for Signup class
 

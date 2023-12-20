@@ -2,7 +2,10 @@
 #include "ui_signup.h"
 #include <QPushButton>
 #include "mainwindow.h"
-
+#include "login.h"
+#include <QSqlQuery>
+#include <QCryptographicHash>
+#include <QMessageBox>
 Signup::Signup(QWidget *parent, MainWindow* mainWindow) :
     QDialog(parent),
     ui(new Ui::Signup),
@@ -11,6 +14,19 @@ Signup::Signup(QWidget *parent, MainWindow* mainWindow) :
     ui->setupUi(this);
     connect(ui->pushButton_back1, &QPushButton::clicked, this, &Signup::on_pushButton_back1_clicked);
 
+    QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("/home/okeyy/Desktop/PROJECT/event_ease/Databse/project");
+
+    if(mydb.open())
+    {
+        qDebug()<<"Database is Connected";
+    }
+    else
+    {
+
+        qDebug()<<"Database is Not Connected";
+        qDebug()<<"Error:"<<mydb.lastError();
+    }
     QIcon nameIcon(":/resource/img/id-card.png");
     ui->name->addAction(nameIcon, QLineEdit::LeadingPosition);
     ui->name->setClearButtonEnabled(true);
@@ -41,12 +57,103 @@ void Signup::on_pushButton_back1_clicked()
 {
     returnToMainWindow();
 }
+bool Signup::isValidEmail(const QString &username) {
+    // Regular expression for a simple email validation
+    QRegularExpression regex(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
 
-
+    return regex.match(username).hasMatch();
+}
+void Signup::showMessage(const QString &title, const QString &text, QMessageBox::Icon icon, QFlags<QMessageBox::StandardButton> buttons) {
+    QMessageBox *msgBox = new QMessageBox(this);
+    msgBox->setText(text);
+    msgBox->setIcon(icon);
+    msgBox->setStandardButtons(buttons);
+    msgBox->setWindowTitle(title);
+    msgBox->setStyleSheet("QLabel{font-size: 18px; color: #fff; font-weight: 400; font-family: 'Poppins';} QPushButton{"
+                          "color: #fff; font-family: 'Poppins' }");
+    msgBox->exec();
+}
 Signup::~Signup()
 {
     delete ui;
 }
+
+
+
+
+void Signup::on_pushButton_signup_clicked()
+{
+   QSqlDatabase mydb = QSqlDatabase::database(); // Get the existing database     connection
+    QString username = ui->name->text();
+    QString email= ui->mail->text();
+    QString password = ui->pass->text();
+    QString cpassword = ui->cpass->text();
+
+    QByteArray hashedPassword = QCryptographicHash::hash(password.toUtf8(),                     QCryptographicHash::Sha256).toHex();
+
+    if(!mydb.open()) {
+        qDebug() << "Failed to open the database.";
+        return;
+    }
+    if (isValidEmail(username)) {
+       qDebug() << "Email is valid!";
+
+    if(password==cpassword && password.length()>=6) {
+     QSqlQuery query;
+        query.prepare("SELECT * FROM users WHERE email=:email OR username=:username");
+     query.bindValue(":email",email);
+      query.bindValue(":username",username);
+     if (query.exec() && query.next()) {
+         // Email is already used, show error message
+         qDebug() << "Email or username is already in use";
+     /*    showMessage("Registration Error", "This email addess is already in use. Please use another or simply login.",
+                     QMessageBox::Critical, QMessageBox::Ok);*/
+     }
+     else{
+         query.prepare("Insert INTO users(username,email,password) VALUES (:username,:email,:password)");
+         query.bindValue(":username",username);
+         query.bindValue(":email",email);
+         query.bindValue(":password",hashedPassword);
+         if(query.exec()){
+             qDebug()<<"Data Inserted Successfully";
+             this->hide();
+         }
+         else {
+             qDebug() << "Error: " << query.lastError().text();
+         }
+         }
+    }
+    else{
+        //password wrong error thrown//
+        showMessage("Registration Error","Password and Confirm Password didnt match and password must be at least 6 characters long,",QMessageBox::Warning,QMessageBox::Ok);
+
+     }
+   }      //Tyo is Valid username ko lagi//
+
+     else{
+         qDebug()<<"Invalid email";
+         showMessage("Registration Error","The email address is not valid.Please //       //enter valid email.",QMessageBox::Critical,QMessageBox::Ok);
+     }
+     mydb.close();
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,7 +4,10 @@
 #define SIGNUP_H
 
 #include <QDialog>
-
+#include <QMainWindow>
+#include <QtSql>
+#include <QRegularExpression>
+#include <QMessageBox>
 class MainWindow;
 
 namespace Ui {
@@ -27,9 +30,16 @@ private slots:
 
 
 
+    void on_pushButton_signup_clicked();
+
+     bool isValidEmail(const QString &username);
+    void showMessage(const QString &title, const QString &text, QMessageBox::Icon icon = QMessageBox::Information, QFlags<QMessageBox::StandardButton> buttons = QMessageBox::Ok);
+
+
 private:
     Ui::Signup *ui;
     MainWindow* mainWindow;
+    QSqlDatabase DB;
 };
 
 #endif // SIGNUP_H
