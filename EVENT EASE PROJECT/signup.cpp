@@ -136,7 +136,7 @@ void Signup::on_pushButton_signup_clicked()
     }
      else{
          qDebug()<<"Invalid email";
-         showMessage("Registration Error","The email address is not valid.Please //       //enter valid email.",QMessageBox::Critical,QMessageBox::Ok);
+         showMessage("Registration Error","The email address is not valid.Please enter valid email.",QMessageBox::Critical,QMessageBox::Ok);
      }
      mydb.close();
      }

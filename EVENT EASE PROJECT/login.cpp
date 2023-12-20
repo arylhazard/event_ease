@@ -1,13 +1,13 @@
 #include "login.h"
-
 #include "ui_login.h"
+#include "mainwindow.h"
+
 #include <QPushButton>
 #include <QCoreApplication>
 #include <QDir>
-#include "mainwindow.h"
 #include <QDebug>
 #include <QSqlQuery>
-
+#include <QCryptographicHash>
 
 login::login(QWidget *parent, MainWindow* mainWindow) :
     QDialog(parent),
@@ -19,7 +19,7 @@ login::login(QWidget *parent, MainWindow* mainWindow) :
 
 
    QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("/home/okeyy/Desktop/PROJECT/event_ease/Databse/project");
+   mydb.setDatabaseName("/home/okeyy/Desktop/PROJECT/event_ease/Databse/project");
 
     if(mydb.open())
     {
@@ -47,7 +47,7 @@ void login::showMessage(const QString &title, const QString &text, QMessageBox::
     msgBox->setIcon(icon);
     msgBox->setStandardButtons(buttons);
     msgBox->setWindowTitle(title);
-    msgBox->setStyleSheet("QLabel{font-size: 18px; color: #fff; font-weight: 400; font-family: 'Poppins';background-color: #088F8F;} "
+    msgBox->setStyleSheet("QLabel{font-size: 18px; color: #000; font-weight: 400; font-family: 'Poppins';} "
                           "QPushButton{color: #fff; font-family: 'Poppins'; background-color: #088F8F;}");
 
     msgBox->exec();
@@ -91,10 +91,11 @@ void login::on_pushButton_done_clicked()
     {
         qDebug() << "Successful to open the database.";
     }
+
     QSqlQuery query;
-    query.prepare("SELECT id FROM users WHERE usesrname = :username AND password = :password");
+    query.prepare("SELECT id FROM users WHERE username = :username AND password = :password");
     query.bindValue(":username", username);
-    query.bindValue(":password", password);
+    //query.bindValue(":password", password);
     query.bindValue(":password",hashedPassword);
 
     if (query.exec() && query.next()) {
@@ -102,7 +103,7 @@ void login::on_pushButton_done_clicked()
         qDebug() << "Login successful";
 
         // Redirect to another window (you can replace this part with your own logic)
-      //  this->hide();
+       // this->hide();
 
 
         // Close the login window
@@ -110,7 +111,8 @@ void login::on_pushButton_done_clicked()
     } else {
         // Login failed, show error message
         qDebug() << "Login failed";
-      showMessage("Login Error", "Invalid email or password.", QMessageBox::Critical, QMessageBox::Ok);  //ERROR aayera nagareko..solve and do//
+      showMessage("Login Error", "Invalid username or password.", QMessageBox::Critical, QMessageBox::Ok);  //ERROR aayera nagareko..solve and do//
+        qDebug()<<"Error:"<<mydb.lastError();
     }
 
     mydb.close();
