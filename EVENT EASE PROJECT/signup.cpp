@@ -57,11 +57,11 @@ void Signup::on_pushButton_back1_clicked()
 {
     returnToMainWindow();
 }
-bool Signup::isValidEmail(const QString &username) {
+bool Signup::isValidEmail(const QString &email) {
     // Regular expression for a simple email validation
     QRegularExpression regex(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
 
-    return regex.match(username).hasMatch();
+    return regex.match(email).hasMatch();
 }
 void Signup::showMessage(const QString &title, const QString &text, QMessageBox::Icon icon, QFlags<QMessageBox::StandardButton> buttons) {
     QMessageBox *msgBox = new QMessageBox(this);
@@ -69,8 +69,9 @@ void Signup::showMessage(const QString &title, const QString &text, QMessageBox:
     msgBox->setIcon(icon);
     msgBox->setStandardButtons(buttons);
     msgBox->setWindowTitle(title);
-    msgBox->setStyleSheet("QLabel{font-size: 18px; color: #fff; font-weight: 400; font-family: 'Poppins';} QPushButton{"
-                          "color: #fff; font-family: 'Poppins' }");
+    msgBox->setStyleSheet("QLabel{font-size: 18px; color: #000; font-weight: 400; font-family: 'Poppins';} "
+                          "QPushButton{color: #fff; font-family: 'Poppins'; background-color: #088F8F;}");
+
     msgBox->exec();
 }
 Signup::~Signup()
@@ -89,16 +90,16 @@ void Signup::on_pushButton_signup_clicked()
     QString password = ui->pass->text();
     QString cpassword = ui->cpass->text();
 
-    QByteArray hashedPassword = QCryptographicHash::hash(password.toUtf8(),                     QCryptographicHash::Sha256).toHex();
+    QByteArray hashedPassword = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex();
 
     if(!mydb.open()) {
         qDebug() << "Failed to open the database.";
         return;
     }
-    if (isValidEmail(username)) {
+    if (isValidEmail(email)) {
        qDebug() << "Email is valid!";
 
-    if(password==cpassword && password.length()>=6) {
+        if(password==cpassword && password.length()>=6){
      QSqlQuery query;
         query.prepare("SELECT * FROM users WHERE email=:email OR username=:username");
      query.bindValue(":email",email);
@@ -106,8 +107,8 @@ void Signup::on_pushButton_signup_clicked()
      if (query.exec() && query.next()) {
          // Email is already used, show error message
          qDebug() << "Email or username is already in use";
-     /*    showMessage("Registration Error", "This email addess is already in use. Please use another or simply login.",
-                     QMessageBox::Critical, QMessageBox::Ok);*/
+       showMessage("Registration Error", "This email addess is already in use. Please use another or simply login.",
+                     QMessageBox::Critical, QMessageBox::Ok);
      }
      else{
          query.prepare("Insert INTO users(username,email,password) VALUES (:username,:email,:password)");
@@ -116,26 +117,30 @@ void Signup::on_pushButton_signup_clicked()
          query.bindValue(":password",hashedPassword);
          if(query.exec()){
              qDebug()<<"Data Inserted Successfully";
+             showMessage("Registration Successful", "You can now log in.", QMessageBox::Information, QMessageBox::Ok);
+                returnToMainWindow();
              this->hide();
          }
          else {
              qDebug() << "Error: " << query.lastError().text();
          }
          }
-    }
+        }
     else{
         //password wrong error thrown//
         showMessage("Registration Error","Password and Confirm Password didnt match and password must be at least 6 characters long,",QMessageBox::Warning,QMessageBox::Ok);
 
      }
-   }      //Tyo is Valid username ko lagi//
+         //Tyo is Valid username ko lagi//
 
+    }
      else{
          qDebug()<<"Invalid email";
          showMessage("Registration Error","The email address is not valid.Please //       //enter valid email.",QMessageBox::Critical,QMessageBox::Ok);
      }
      mydb.close();
      }
+
 
 
 

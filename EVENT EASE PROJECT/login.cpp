@@ -1,4 +1,5 @@
 #include "login.h"
+
 #include "ui_login.h"
 #include <QPushButton>
 #include <QCoreApplication>
@@ -17,8 +18,8 @@ login::login(QWidget *parent, MainWindow* mainWindow) :
     connect(ui->pushButton_back, &QPushButton::clicked, this, &login::on_pushButton_back_clicked);
 
 
-  /*  QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("/home/okeyy/endsem/Databse/project");
+   QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("/home/okeyy/Desktop/PROJECT/event_ease/Databse/project");
 
     if(mydb.open())
     {
@@ -29,7 +30,7 @@ login::login(QWidget *parent, MainWindow* mainWindow) :
 
         qDebug()<<"Database is Not Connected";
         qDebug()<<"Error:"<<mydb.lastError();
-    }*/
+    }
     QIcon userIcon(":/resource/img/user.png"); // Provide the path to your user icon
     ui->user->addAction(userIcon, QLineEdit::LeadingPosition);
     ui->user->setClearButtonEnabled(true); // Enable the clear button with the icon
@@ -39,6 +40,17 @@ login::login(QWidget *parent, MainWindow* mainWindow) :
     ui->pass->setClearButtonEnabled(true); // Enable the clear button with the icon
 
 
+}
+void login::showMessage(const QString &title, const QString &text, QMessageBox::Icon icon, QFlags<QMessageBox::StandardButton> buttons) {
+    QMessageBox *msgBox = new QMessageBox(this);
+    msgBox->setText(text);
+    msgBox->setIcon(icon);
+    msgBox->setStandardButtons(buttons);
+    msgBox->setWindowTitle(title);
+    msgBox->setStyleSheet("QLabel{font-size: 18px; color: #fff; font-weight: 400; font-family: 'Poppins';background-color: #088F8F;} "
+                          "QPushButton{color: #fff; font-family: 'Poppins'; background-color: #088F8F;}");
+
+    msgBox->exec();
 }
 
 
@@ -75,6 +87,10 @@ void login::on_pushButton_done_clicked()
         qDebug() << "Failed to open the database.";
         return;
     }
+    else
+    {
+        qDebug() << "Successful to open the database.";
+    }
     QSqlQuery query;
     query.prepare("SELECT id FROM users WHERE usesrname = :username AND password = :password");
     query.bindValue(":username", username);
@@ -94,15 +110,9 @@ void login::on_pushButton_done_clicked()
     } else {
         // Login failed, show error message
         qDebug() << "Login failed";
-       // showMessage("Login Error", "Invalid email or password.", QMessageBox::Critical, QMessageBox::Ok);  //ERROR aayera nagareko..solve and do//
+      showMessage("Login Error", "Invalid email or password.", QMessageBox::Critical, QMessageBox::Ok);  //ERROR aayera nagareko..solve and do//
     }
 
     mydb.close();
-
-
-
-
-
-
 }
 
