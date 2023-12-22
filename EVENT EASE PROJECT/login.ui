@@ -14,7 +14,7 @@
    <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Login Page</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -241,11 +241,45 @@ font: 700 11pt &quot;Myriad Pro Cond&quot;;
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>320</y>
+       <width>91</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+border: none;
+color: rgb(6, 100, 133);
+background-color: rgba(0, 0, 0,0);
+text-decoration:underline;
+font : 700 12pt &quot;Myriad Pro Cond&quot;;
+}
+
+QPushButton:Hover
+{
+
+color: rgba(255,255,255,255)
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Forgot Password</string>
+     </property>
+    </widget>
     <zorder>label_3</zorder>
     <zorder>user</zorder>
     <zorder>pass</zorder>
     <zorder>pushButton_done</zorder>
     <zorder>labelMessage</zorder>
+    <zorder>pushButton</zorder>
    </widget>
    <widget class="QPushButton" name="pushButton_back">
     <property name="geometry">

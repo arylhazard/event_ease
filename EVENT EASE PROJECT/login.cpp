@@ -19,8 +19,7 @@ login::login(QWidget *parent, MainWindow* mainWindow) :
 
 
    QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
-   mydb.setDatabaseName("/home/okeyy/Desktop/PROJECT/event_ease/Databse/project");
-
+   mydb.setDatabaseName("C:/Users/LENOVO/Desktop/event_ease-main/event_ease-main/Databse/project");
     if(mydb.open())
     {
         qDebug()<<"Database is Connected";
