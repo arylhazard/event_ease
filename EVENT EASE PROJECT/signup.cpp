@@ -53,6 +53,7 @@ void Signup::returnToMainWindow()
     }
 }
 
+
 void Signup::on_pushButton_back1_clicked()
 {
     returnToMainWindow();
@@ -82,7 +83,7 @@ Signup::~Signup()
 
 
 
-void Signup::on_pushButton_signup_clicked()
+void Signup::on_pushButton_next_clicked()
 {
    QSqlDatabase mydb = QSqlDatabase::database(); // Get the existing database     connection
     QString username = ui->name->text();

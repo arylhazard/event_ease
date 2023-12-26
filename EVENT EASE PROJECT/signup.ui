@@ -275,10 +275,10 @@ QPushButton:Hover
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_signup">
+     <widget class="QPushButton" name="pushButton_next">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>360</x>
         <y>400</y>
         <width>80</width>
         <height>24</height>
@@ -304,7 +304,7 @@ QPushButton:Hover
 </string>
       </property>
       <property name="text">
-       <string>SIGN UP </string>
+       <string>NEXT</string>
       </property>
      </widget>
     </widget>

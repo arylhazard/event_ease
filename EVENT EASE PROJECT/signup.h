@@ -30,7 +30,7 @@ private slots:
 
 
 
-    void on_pushButton_signup_clicked();
+    void on_pushButton_next_clicked();
 
      bool isValidEmail(const QString &email);
     void showMessage(const QString &title, const QString &text, QMessageBox::Icon icon = QMessageBox::Information, QFlags<QMessageBox::StandardButton> buttons = QMessageBox::Ok);
