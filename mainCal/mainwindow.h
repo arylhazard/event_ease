@@ -41,6 +41,8 @@ public slots:
     void updateData();
     void nextMonth();
     void updateCalendar();
+    void onButtonClicked();
+
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

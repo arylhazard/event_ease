@@ -49,6 +49,7 @@ noteInput = new QLineEdit;
 // Create the QPushButton
 QPushButton *button = new QPushButton;
 button->setText("Add"); 
+connect(button, &QPushButton::clicked, this, &MainWindow::onButtonClicked);
 button->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px;");
 
 
@@ -347,6 +348,11 @@ void MainWindow::setThisDate(date dateToSet)
     yearCombo->setCurrentText(dateToSet.year);
     updateCalendar();
 
+}
+void MainWindow::onButtonClicked() {
+    QString note = noteInput->text();
+    qDebug() << "Note: " << note;
+    //Note is the text in the enter note field
 }
 
 
