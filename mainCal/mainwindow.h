@@ -1,5 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
 #include <QLineEdit>
 #include <QMainWindow>
 #include <QGridLayout>
@@ -10,21 +11,33 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QStringList>
+#include <QPushButton>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
+private:     struct date {
+        QString year;
+        QString month;
+        QString day;
+    };
+    struct additionalInfo {
+        QString tithi;
+        QString holiday;
+        QJsonArray marriage;
+        QJsonArray bratabandha;
+    };
 public:
-    // Constructor
-    MainWindow(QWidget *parent = nullptr);
- // Function to create the main layout
-    void createMainLayout();
+    MainWindow(QWidget *parent = nullptr);  // Constructor
 
-    // Function to create the sidebar
-    void createSidebar();
+    void createMainLayout();  // Function to create the main layout
+    void createSidebar();     // Function to create the sidebar
+    void initSidebar();
+    void setThisDate(date);
+
+
 public slots:
-    // Slots for handling user actions
-    void previousMonth();
+    void previousMonth();     // Slots for handling user actions
     void updateData();
     void nextMonth();
     void updateCalendar();
@@ -33,14 +46,20 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    // Declare QLabel pointer
-QLabel *dataLabel; 
-QLineEdit *noteInput;
-        QString currentNepaliYear;
+    QLabel *dataLabel; 
+    QLabel *holidayLabel ;
+    QLabel *tithiLabel;
+    QLabel *marriageLabel;
+    QLabel *bratabandhaLabel;
+    QLineEdit *noteInput;
+    int currentEnglishYear;
+    int currentEnglishDay;
+    QString currentEnglishMonth;
+    QString currentNepaliYear;
     QString currentNepaliMonth;
     QString currentNepaliDay;
     bool updateNeeded;
-     QVBoxLayout *mainLayout; // Layout for the main content
+    QVBoxLayout *mainLayout;  // Layout for the main content
     QHBoxLayout *totalLayout; // Layout for the entire window
     QWidget *sideWidget;
     QVBoxLayout *sideLayout;
@@ -48,22 +67,28 @@ QLineEdit *noteInput;
     QComboBox *monthCombo;           // Combo box for selecting months
     QComboBox *yearCombo;            // Combo box for selecting years
     QJsonObject jsonDataObject;      // JSON data container
-    int selectedMonth;                // Currently selected month index
+    int selectedMonth;               // Currently selected month index
     QJsonObject metadata;            // Metadata for the calendar
-    int enFirstOrSecond = -1;         // Flag for tracking English month
-    int selectedYear;                 // Currently selected year
-    QGridLayout *gridLayout;          // Layout for calendar grid
-    QJsonArray days;                  // Array to store day information
-    bool dateSyncedOnce=false;   
-    struct date {
-        QString year;
-        QString month;
-        QString day;
-    };    // Boolean value that can be used to check if syncing algorithm can be skipped
-        date convertADtoBS(int currentEnglishYear, QString currentEnglishMonth, int currentEnglishDay);
-            date convertBStoAD(date nepaliDate);
-                QStringList  months = { "Baisakh", "Jestha", "Asar", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Paush", "Magh", "Falgun", "Chaitra" };
+    int enFirstOrSecond = -1;        // Flag for tracking English month
+    int selectedYear;                // Currently selected year
+    QGridLayout *gridLayout;         // Layout for calendar grid
+    QJsonArray days;                 // Array to store day information
+    bool dateSyncedOnce = false;  
+    QPushButton *convertModeButton;
+QLabel *convertResultLabel;
+bool check=false;
+    
+ 
 
+
+    date gotoDate;
+    date convertADtoBS(int currentEnglishYear, QString currentEnglishMonth, int currentEnglishDay);
+    date convertBStoAD(date nepaliDate);
+    additionalInfo showAdditionalInfo(date);
+    void increaseMonth(int& month, int& year);
+    void decreaseMonth(int& month, int& year);
+
+    QStringList months = { "Baisakh", "Jestha", "Asadh", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangshir", "Poush", "Magh", "Falgun", "Chaitra" };
 };
 
 #endif // MAINWINDOW_H

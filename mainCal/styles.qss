@@ -88,6 +88,9 @@ QComboBox QAbstractScrollArea {
 QComboBox::down-arrow {
     image: none;
 }
+QComboBox::drop-down {
+      width: 0px;
+    }
 
 /* Disabled State for Combo Box */
 QComboBox:disabled {

@@ -58,3 +58,30 @@ void MainWindow::nextMonth() {
     // Update the calendar grid
     updateCalendar();
 }
+void MainWindow::increaseMonth(int& month, int& year)
+{
+    if (month == 11)
+    {
+        month = 0;
+        year++;
+    }
+    else
+    {
+        month++;
+    }
+    qDebug() << "Increased month to " << month << ", year is now " << year;
+}
+
+void MainWindow::decreaseMonth(int& month, int& year)
+{
+    if (month == 0)
+    {
+        month = 11;
+        year--;
+    }
+    else
+    {
+        month--;
+    }
+    qDebug() << "Decreased month to " << month << ", year is now " << year;
+}

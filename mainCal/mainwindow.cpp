@@ -1,7 +1,5 @@
 #include <QGridLayout>
-#include <QLabel>
 #include <QWidget>
-#include "mainwindow.h"
 #include <QHBoxLayout>
 #include <QComboBox>
 #include <QFile>
@@ -9,11 +7,10 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonParseError>
-#include <QPushButton>
 #include <QApplication>
 #include <QDateTime>
-
-#include <QSpinBox>
+#include "mainwindow.h"
+#include "sidebar.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -42,8 +39,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     yearCombo = new QComboBox(this);
 
     // Populate month combo box
-    monthCombo->addItems({"Baisakh", "Jestha", "Asar", "Shrawan", "Bhadra", "Ashwin",
-                          "Kartik", "Mangsir", "Paush", "Magh", "Falgun", "Chaitra"});
+    monthCombo->addItems(months);
 
     // Populate year combo box
     yearCombo->setFixedWidth(80);
@@ -78,8 +74,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     mainLayout->addLayout(gridLayout);
     // Updating the calendar,This function also is automatically  called whenever there is a change in combobox re-populating datebuttons.
     updateCalendar();
+    initSidebar();
 }
 // createMainLayout function
+
 void MainWindow::createMainLayout()
 {
     mainLayout = new QVBoxLayout;
@@ -88,119 +86,11 @@ void MainWindow::createMainLayout()
 }
 // createSidebar function
 
-void MainWindow::createSidebar()
-{
-    sideWidget = new QWidget;
-    QVBoxLayout *sideLayout = new QVBoxLayout;
-    QStringList englishMonths = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-    // Create dayInfo layout and add components to it
-    QWidget *dayInfoWidget = new QWidget;
-    QVBoxLayout *dayInfo = new QVBoxLayout(dayInfoWidget);
-    dataLabel = new QLabel;
-    dayInfo->addWidget(dataLabel);
-
-    dayInfoWidget->setStyleSheet("background-color: #FF6347;"); // Tomato color
-    // Create note input for dayInfo
-    noteInput = new QLineEdit;
-
-    dayInfo->addWidget(noteInput);
-
-    // Create convertDate layout and add components to it
-    QWidget *convertDateWidget = new QWidget;
-    QVBoxLayout *convertDate = new QVBoxLayout(convertDateWidget);
-    QLabel *dateLabel = new QLabel("Convert Date");
-    convertDate->addWidget(dateLabel);
-
-    // Create conversion mode button
-    QPushButton *convertModeButton = new QPushButton;
-    convertModeButton->setCheckable(true);
-    convertModeButton->setText("AD to BS");
-    convertModeButton->setStyleSheet("background-color: #ADD8E6; color: white; padding: 5px;");
-
-    // Set an icon for the button
-    convertModeButton->setIcon(QIcon("assets/icons/switch.png")); // Replace with the path to your icon
-
-    convertDate->addWidget(convertModeButton);
-
-    // Connect toggled signal to lambda function that updates the button's text
-    connect(convertModeButton, &QPushButton::toggled, [convertModeButton](bool checked)
-            {
-                if (checked) {
-                    convertModeButton->setText("BS to AD");
-                } else {
-                    convertModeButton->setText("AD to BS");
-                } });
-
-    // Create date edit for conversion
-    QLineEdit *convertDateEdit = new QLineEdit;
-    convertDateEdit->setPlaceholderText("YYYY/MM/DD");
-    convertDate->addWidget(convertDateEdit);
-
-    // Create convert button
-    QPushButton *convertButton = new QPushButton("Convert");
-    convertDate->addWidget(convertButton);
-
-    // Create result label for conversion
-    QLabel *convertResultLabel = new QLabel;
-    convertDate->addWidget(convertResultLabel);
-
-    // Connect convertButton's clicked signal to a slot that performs the conversion
-    connect(convertButton, &QPushButton::clicked, [this, convertDateEdit, convertResultLabel, convertModeButton, englishMonths]()
-            {
-                QString dateStr = convertDateEdit->text();
-                qDebug() << "Date string: " << dateStr;
-                QStringList dateParts = dateStr.split("/");
-                if (dateParts.size() != 3) {
-                    // Invalid date format
-                    convertResultLabel->setText("Invalid date format. Please enter date as YYYY/MM/DD.");
-                    return;
-                }
-                qDebug() << "Year string: " << dateParts[0].toInt();
-                qDebug() << "Day string: " << dateParts[2].toInt();
-                QString year = dateParts[0];
-                QString month = dateParts[1];
-                QString day = dateParts[2];
-                QString mode = convertModeButton->text();
-
-                // Perform the conversion
-                date temp;
-                QString result;
-                if (mode == "AD to BS") {
-                    qDebug() << "Converting from AD to BS. Year: " << year << " Month: " << englishMonths.at(month.toInt()-1) << " Day: " << day;
-                    temp = convertADtoBS(year.toInt(), englishMonths.at(month.toInt()-1), day.toInt());        }
-                else {
-                    date dateToConvert;
-                    dateToConvert.year = year;
-                    dateToConvert.month = months.at(month.toInt()-1);
-                    dateToConvert.day = day;
-
-                    qDebug() << "Converting from BS to AD. Year: " << dateToConvert.year << " Month: " << dateToConvert.month << " Day: " << dateToConvert.day;
-                    temp = convertBStoAD(dateToConvert);
-                    qDebug() << "Converted date. Year: " << temp.year << " Month: " << temp.month << " Day: " << temp.day;
-                }
-                result=QString("%1/%2/%3").arg(temp.year).arg(temp.month).arg(temp.day);
-
-                // Update the result label
-                convertResultLabel->setText(result); });
-
-    convertDateWidget->setStyleSheet("background-color: #B974C2;");
-
-    // Add dayInfo and convertDate to the side layout
-    sideLayout->addWidget(dayInfoWidget, 4);
-    sideLayout->addWidget(convertDateWidget, 6);
-
-    // Set the side layout on the side widget
-    sideWidget->setLayout(sideLayout);
-
-    // Set the background color of the side widget
-    sideWidget->setStyleSheet("background-color: #343746;");
-}
-
 void MainWindow::updateCalendar()
 {
-    int currentEnglishYear = QDate::currentDate().year();
-    int currentEnglishDay = QDate::currentDate().day();
-    QString currentEnglishMonth = QDate::currentDate().toString("MMM");
+    currentEnglishYear = QDate::currentDate().year();
+    currentEnglishDay = QDate::currentDate().day();
+    currentEnglishMonth = QDate::currentDate().toString("MMM");
 
     if (!dateSyncedOnce)
     {
@@ -212,11 +102,7 @@ void MainWindow::updateCalendar()
         currentNepaliYear = currentNepaliDate.year;
 
         // Create the full Nepali and English dates
-        QString fullNepaliDate = currentNepaliDay + " " + currentNepaliMonth + " " + currentNepaliYear;
-        QString fullEnglishDate = QString::number(currentEnglishDay) + " " + currentEnglishMonth + " " + QString::number(currentEnglishYear);
 
-        dataLabel->setText("Nepali Date: " + fullNepaliDate + "\nEnglish Date: " + fullEnglishDate);
-        noteInput->setPlaceholderText("Notes for " + fullNepaliDate);
         dateSyncedOnce = true;
     }
 
@@ -277,7 +163,7 @@ void MainWindow::updateCalendar()
 
             // Determine if the month starts with the English day 1
             if (englishDay.toInt() == 1)
-            {
+            {   englishDay =metadata.value("enEnding").toArray().at(0).toString().toUpper() + " " +englishDay;
                 enFirstOrSecond = nepaliDay.toInt();
             }
             qDebug() << "Condition Check - Nepali Day: " << (nepaliDay == currentNepaliDay);
@@ -340,78 +226,58 @@ void MainWindow::updateCalendar()
         }
     }
 }
+
+
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     QMainWindow::resizeEvent(event);
 
     QSize newSize = size();
-    if (newSize.width() / 16 != newSize.height() / 9)
+    if (newSize.width() / 16.0 != newSize.height() / 9.0)
     {
-        newSize.setHeight(newSize.width() * (9 / 16)); //
+        newSize.setHeight(newSize.width() * (9.0 / 16.0)); //
         resize(newSize);
     }
 }
 
-void MainWindow::updateData()
+
+// Function to convert AD to BS
+MainWindow::date MainWindow::convertADtoBS(int EnglishYear, QString EnglishMonth, int EnglishDay)
 {
-    // Get the clicked button
-    QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
-    if (clickedButton)
-    {
-        // Get the button identifier and corresponding day information
-        int buttonIdentifier = clickedButton->property("dateIdentifier").toInt();
-        QJsonObject day = days[buttonIdentifier].toObject();
-        QString nepaliDay = day["nepaliDay"].toString();
-        QString englishDay = day["englishDay"].toString();
-        QJsonArray nepaliDate = metadata["nepaliDate"].toArray();
-        QJsonArray enBeginning = metadata["enBeginning"].toArray();
-        QJsonArray enEnding = metadata["enEnding"].toArray();
-
-        // Create the full Nepali and English dates
-        QString fullNepaliDate = nepaliDay + " " + nepaliDate[0].toString() + " " + nepaliDate[1].toString();
-        bool isSecondEnglishMonth = (nepaliDay.toInt() >= enFirstOrSecond);
-        QString fullEnglishDate = englishDay + " " + (isSecondEnglishMonth ? (enEnding[0].toString() + " " + enEnding[1].toString()) : (enBeginning[0].toString() + " " + enBeginning[1].toString()));
-
-        // Update the text of dataLabel
-        dataLabel->setText("Nepali Date: " + fullNepaliDate + "\nEnglish Date: " + fullEnglishDate);
-        noteInput->setPlaceholderText("Notes for " + fullNepaliDate);
-    }
-}
-
-MainWindow::date MainWindow::convertADtoBS(int currentEnglishYear, QString currentEnglishMonth, int currentEnglishDay)
-{
+    // Initialize variables
     date nepaliDate;
     bool forward = true;
     bool backward = true;
-
     int begYear = 1992;
     int endYear = 2099;
     int midYear;
-
     int m = 8;
     int iterationCount = 0; // Counter for the number of iterations
 
+    // Loop until iterationCount is less than 50
     while (iterationCount < 50)
     {
         iterationCount++;
-
         midYear = (begYear + endYear) / 2;
         QString tempFilePath = QString("assets/data/%1/%2.json").arg(midYear).arg(months.at(m));
         QFile tempFile(tempFilePath);
-        qDebug() << "Iteration:" << iterationCount;
+
+        // Debug statements
+        qDebug() << "\nIteration:" << iterationCount;
         qDebug() << "Mid Year:" << midYear;
         qDebug() << "File Path:" << tempFilePath;
 
+        // Open file
         if (!tempFile.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             qDebug() << "Failed to open JSON file at the start";
             return nepaliDate;
         }
 
+        // Read file
         QTextStream in(&tempFile);
         QString tempData = in.readAll();
         tempFile.close();
-        // qDebug() << "File Data:" << tempData;
 
         // Parse JSON data
         QJsonDocument tempDocument = QJsonDocument::fromJson(tempData.toUtf8());
@@ -419,52 +285,56 @@ MainWindow::date MainWindow::convertADtoBS(int currentEnglishYear, QString curre
 
         // Extract metadata and days arrays
         QJsonObject tempmetadata = tempRoot["metadata"].toObject();
-        qDebug() << "Metadata:" << tempmetadata;
-
         QJsonArray tempNepaliDate = tempmetadata["nepaliDate"].toArray();
         QJsonArray tempEnBeginning = tempmetadata["enBeginning"].toArray();
         QJsonArray tempEnEnding = tempmetadata["enEnding"].toArray();
         QJsonArray tempdays = tempRoot["days"].toArray();
 
-        if (tempEnBeginning[1].toString().toInt() == currentEnglishYear && backward)
+        // Check if current English year matches the beginning year in the JSON data
+        if (tempEnBeginning[1].toString().toInt() == EnglishYear && backward)
         {
-            if (tempEnBeginning[0].toString() == currentEnglishMonth)
+            qDebug() << "Iterating backwards";
+            if (tempEnBeginning[0].toString() == EnglishMonth)
             {
+                qDebug() << "Month matches, checking days";
                 for (const QJsonValue &dayValue : tempdays)
                 {
                     QJsonObject dayObject = dayValue.toObject();
 
-                    if (dayObject["englishDay"].toString().toInt() == currentEnglishDay)
+                    // Check if current English day matches the day in the JSON data
+                    if (dayObject["englishDay"].toString().toInt() == EnglishDay)
                     {
-                        dateSyncedOnce = true;
+                        qDebug() << "Day matches. Syncing date.";
+                        
                         nepaliDate.year = tempNepaliDate[1].toString();
                         nepaliDate.month = months.at(m);
                         nepaliDate.day = dayObject["nepaliDay"].toString();
-                        break;
+                        qDebug() << "Synced Nepali Date: " << nepaliDate.day << " " << nepaliDate.month << " " << nepaliDate.year;
+                        return nepaliDate;
                     }
                 }
+                decreaseMonth(m, midYear);
             }
             else
             {
-                if (m == 0)
-                {
-                    m = 11;
-                    midYear--;
-                }
-                else
-                    m--;
+                qDebug() << "Month does not match, moving to previous month";
+                decreaseMonth(m, midYear);
                 forward = false;
             }
         }
-        else if (tempEnEnding[1].toString().toInt() == currentEnglishYear && forward)
+        // Check if current English year matches the ending year in the JSON data
+        else if (tempEnEnding[1].toString().toInt() == EnglishYear && forward)
         {
-            if (tempEnEnding[0].toString() == currentEnglishMonth)
+            qDebug() << "Iterating forward";
+            if (tempEnEnding[0].toString() == EnglishMonth)
             {
+                qDebug() << "Month matches, checking days";
                 for (const QJsonValue &dayValue : tempdays)
                 {
                     QJsonObject dayObject = dayValue.toObject();
 
-                    if (dayObject["englishDay"].toString().toInt() == currentEnglishDay)
+                    // Check if current English day matches the day in the JSON data
+                    if (dayObject["englishDay"].toString().toInt() == EnglishDay)
                     {
                         dateSyncedOnce = true;
                         nepaliDate.year = tempNepaliDate[1].toString();
@@ -473,35 +343,35 @@ MainWindow::date MainWindow::convertADtoBS(int currentEnglishYear, QString curre
                         break;
                     }
                 }
+                increaseMonth(m, midYear);
+                forward = false;
+                backward = true;
             }
             else
             {
-                if (m == 11)
-                {
-                    m = 0;
-                    midYear++;
-                }
-                else
-                    m++;
+                qDebug() << "Month does not match, moving to next month";
+                increaseMonth(m, midYear);
                 backward = false;
             }
         }
         else
         {
-            if (currentEnglishYear < tempEnBeginning[1].toString().toInt())
+            qDebug() << "Adjusting year range";
+            if (EnglishYear < tempEnBeginning[1].toString().toInt())
             {
                 endYear = midYear - 1;
             }
-            else if (currentEnglishYear > tempEnEnding[1].toString().toInt())
+            else if (EnglishYear > tempEnEnding[1].toString().toInt())
             {
                 begYear = midYear + 1;
             }
         }
     }
-    qDebug() << "Finished conversion. Nepali Year: " << nepaliDate.year << " Month: " << nepaliDate.month << " Day: " << nepaliDate.day;
+    qDebug() << "\nFinished conversion. Nepali Year: " << nepaliDate.year << " Month: " << nepaliDate.month << " Day: " << nepaliDate.day;
 
     return nepaliDate;
 }
+
 
 MainWindow::date MainWindow::convertBStoAD(date nepaliDate)
 {

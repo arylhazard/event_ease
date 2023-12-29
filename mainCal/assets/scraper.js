@@ -3,7 +3,7 @@ const fs = require("fs");
 const { JSDOM } = require("jsdom");
 const ProgressBar = require('progress'); // Import the progress module
 
-const months = ["Baisakh", "Jestha", "Asar", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Paush", "Magh", "Falgun", "Chaitra"];
+const months = ["Baisakh", "Jestha", "Asadh", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangshir", "Poush", "Magh", "Falgun", "Chaitra"];
 
 const parseEnglishDate = (en) => {
     const [monthYear, year] = en.split(" ");
