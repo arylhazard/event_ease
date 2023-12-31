@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -flto -fno-fat-lto-objects -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -std=gnu++1z -flto -fno-fat-lto-objects -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I. -I. -I/usr/lib/qt/mkspecs/linux-g++
+INCPATH       = -I. -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtSql -I/usr/include/qt/QtCore -I. -I. -I/usr/lib/qt/mkspecs/linux-g++
 QMAKE         = /usr/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -37,10 +37,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = event_ease1.0.0
-DISTDIR = /home/arylhazard/Desktop/event_ease.latest/mainCal/.tmp/event_ease1.0.0
+DISTDIR = /home/arylhazard/Pictures/event_ease/mainCal/.tmp/event_ease1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1 -pipe -O2 -std=gnu++1z -flto=8 -fno-fat-lto-objects -fuse-linker-plugin -fPIC
-LIBS          = $(SUBLIBS) /usr/lib/libQt5Widgets.so /usr/lib/libQt5Gui.so /usr/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /usr/lib/libQt5Widgets.so /usr/lib/libQt5Gui.so /usr/lib/libQt5Sql.so /usr/lib/libQt5Core.so -lGL -lpthread   
 AR            = gcc-ar cqs
 RANLIB        = 
 SED           = sed
@@ -283,7 +283,8 @@ DIST          = styles.qss \
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		event_ease.pro mainwindow.h main.cpp \
+		event_ease.pro mainwindow.h \
+		sidebar.h main.cpp \
 		mainwindow.cpp
 QMAKE_TARGET  = event_ease
 DESTDIR       = 
@@ -764,7 +765,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h sidebar.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
@@ -804,7 +805,7 @@ compiler_moc_header_clean:
 moc_mainwindow.cpp: mainwindow.h \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/arylhazard/Desktop/event_ease.latest/mainCal/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/arylhazard/Desktop/event_ease.latest/mainCal -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/13.2.1 -I/usr/include/c++/13.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/13.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include-fixed -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/usr/bin/moc $(DEFINES) --include /home/arylhazard/Pictures/event_ease/mainCal/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/arylhazard/Pictures/event_ease/mainCal -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtSql -I/usr/include/qt/QtCore -I/usr/include/c++/13.2.1 -I/usr/include/c++/13.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/13.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include-fixed -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

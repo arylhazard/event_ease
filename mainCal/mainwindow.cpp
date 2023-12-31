@@ -14,6 +14,22 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
+    noteDisplay = new QLineEdit(this);
+    noteInput = new QLineEdit(this);
+
+    QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("../Databse/project"); //Add the path to your database//
+
+    if(mydb.open())
+    {
+        qDebug()<<"Database is Connected";
+    }
+    else
+    {
+
+        qDebug()<<"Database is Not Connected";
+        qDebug()<<"Error:"<<mydb.lastError();
+    }
     setMinimumSize(1080, 720);
     // Create central widget
     QWidget *centralWidget = new QWidget(this);

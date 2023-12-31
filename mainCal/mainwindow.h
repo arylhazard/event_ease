@@ -12,8 +12,9 @@
 #include <QJsonArray>
 #include <QStringList>
 #include <QPushButton>
+#include <QtSql>
 
-class MainWindow : public QMainWindow {
+class MainWindow: public QMainWindow {
     Q_OBJECT
 
 private:     struct date {
@@ -24,8 +25,8 @@ private:     struct date {
     struct additionalInfo {
         QString tithi;
         QString holiday;
-        QJsonArray marriage;
-        QJsonArray bratabandha;
+
+        QStringList events;
     };
 public:
     MainWindow(QWidget *parent = nullptr);  // Constructor
@@ -48,11 +49,13 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    QLabel *dataLabel; 
+    QLabel *dataLabel;
+    QLabel *eventsLabel;
     QLabel *holidayLabel ;
     QLabel *tithiLabel;
-    QLabel *marriageLabel;
-    QLabel *bratabandhaLabel;
+
+
+    QLineEdit *noteDisplay;
     QLineEdit *noteInput;
     int currentEnglishYear;
     int currentEnglishDay;
@@ -77,6 +80,7 @@ private:
     QJsonArray days;                 // Array to store day information
     bool dateSyncedOnce = false;  
     QPushButton *convertModeButton;
+    date clickedDate;
 QLabel *convertResultLabel;
 bool check=false;
     

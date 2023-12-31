@@ -13,6 +13,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include "mainwindow.h"
 
 void MainWindow::createSidebar()
 {
@@ -24,17 +25,17 @@ void MainWindow::createSidebar()
     QVBoxLayout *dayInfo = new QVBoxLayout(dayInfoWidget);
     // Create QLabel objects
     dataLabel = new QLabel;
+        eventsLabel =new QLabel;
     holidayLabel = new QLabel;
-    bratabandhaLabel = new QLabel;
-    marriageLabel = new QLabel;
+
     tithiLabel = new QLabel;
 
     // Add QLabel objects to dayInfo
     dayInfo->addWidget(dataLabel);
-    dayInfo->addWidget(bratabandhaLabel);
-    dayInfo->addWidget(marriageLabel);
+    dayInfo->addWidget(eventsLabel);
     dayInfo->addWidget(holidayLabel);
     dayInfo->addWidget(tithiLabel);
+
     dayInfoWidget->setStyleSheet("background-color: #FF6347;"); // Tomato color
     // Create note input for dayInfo
 // Create a QWidget to act as a container
@@ -185,7 +186,7 @@ connect(setDateButton, &QPushButton::clicked, [this]()
     sideWidget->setLayout(sideLayout);
 
     // Set the background color of the side widget
-    sideWidget->setStyleSheet("background-color: #343746;");
+    sideWidget->setStyleSheet("background-color: #0D98BA;");
 
 
 
@@ -205,7 +206,7 @@ void MainWindow::updateData()
         QJsonArray nepaliDate = metadata["nepaliDate"].toArray();
         QJsonArray enBeginning = metadata["enBeginning"].toArray();
         QJsonArray enEnding = metadata["enEnding"].toArray();
-        date clickedDate;
+
         clickedDate.year = nepaliDate[1].toString();
         clickedDate.month = nepaliDate[0].toString();
         clickedDate.day = nepaliDay;
@@ -221,19 +222,7 @@ void MainWindow::updateData()
 
     additionalInfo info= showAdditionalInfo(clickedDate);
     dataLabel->setText("Nepali Date: " + fullNepaliDate + "\nEnglish Date: " + fullEnglishDate+"\n");
-QStringList marriageList;
-for (const QJsonValue &value : info.marriage) {
-    marriageList.append(value.toString());
-}
-QString marriageInfo = marriageList.isEmpty() ? "No marriage dates for this month" : "Marriage: " + marriageList.join(", ");
-marriageLabel->setText(marriageInfo);
-
-QStringList bratabandhaList;
-for (const QJsonValue &value : info.bratabandha) {
-    bratabandhaList.append(value.toString());
-}
-QString bratabandhaInfo = bratabandhaList.isEmpty() ? "No bratabandha dates for this month" : "Bratabandha: " + bratabandhaList.join(", ");
-bratabandhaLabel->setText(bratabandhaInfo);
+        eventsLabel->setText("Events:\n" + info.events.join("\n"));
     if(info.holiday.isEmpty())
     {
         holidayLabel->setText("No Occasion today");
@@ -244,6 +233,7 @@ bratabandhaLabel->setText(bratabandhaInfo);
     }
     holidayLabel->setWordWrap(true);
     tithiLabel->setText("Tithi: " + info.tithi);
+
     // qDebug() << "Marriage  " << info.marriage;
     // qDebug() << "Bratabandha  " << info.bratabandha;
     // qDebug() << "Holiday  " << info.holiday;
@@ -259,7 +249,7 @@ MainWindow::additionalInfo MainWindow::showAdditionalInfo(date date)
     QString datamonth = date.month;
     QString dataDay = date.day;
     additionalInfo info;
-
+    QString eventDate=clickedDate.year+"-"+clickedDate.month+"-"+clickedDate.day;
     qDebug() << "Date: " << dataYear << "/" << datamonth << "/" << dataDay;
 
     QString jsonDataFilePath = QString("assets/data/%1/%2.json").arg(dataYear).arg(dataYear);
@@ -274,6 +264,32 @@ MainWindow::additionalInfo MainWindow::showAdditionalInfo(date date)
 
         
     }
+    QSqlDatabase mydb = QSqlDatabase::database();
+
+    if(!mydb.open()) {
+        qDebug() << "Failed to open the database.";
+        //  return;
+    }
+    else
+    {
+        qDebug()<<"Database is connected";
+    }
+    QString note = noteInput->text();//
+    QSqlQuery query;
+    query.prepare("SELECT note FROM events WHERE date = :eventDate");
+    query.bindValue(":eventDate", eventDate);
+    query.exec();
+
+    QStringList events;
+    while (query.next()) {
+        QString note = query.value(0).toString();
+        events.append(note);
+    }
+
+    // ... existing code ...
+
+
+
 
     QTextStream addData(&jsonDataFile);
     QString jsonAdditionalData = addData.readAll();
@@ -316,22 +332,25 @@ qDebug() << "holidayObject.contains(dataDay) " << holidayObject.contains(dataDay
     {
         info.tithi = tithiObject[dataDay].toString();
     }
-   
-    info.marriage = reqmonthData["marriage"].toArray();
-    info.bratabandha = reqmonthData["bratabandha"].toArray();
+   info.events = events;  // Store events in the additionalInfo structure
+
   
     if (!isEmpty) {
         qDebug() << "Holiday: " << info.holiday;
         qDebug() << "Tithi: " << info.tithi;
-        qDebug() << "Marriage: " << info.marriage;
-        qDebug() << "Bratabandha: " << info.bratabandha;
+
+        qDebug() <<"Events: \n" <<info.events;
         return info;
     }
+
+
+
 
 
 }
 void MainWindow::initSidebar()
 {
+
    convertModeButton->toggle();
    
 
@@ -342,6 +361,8 @@ void MainWindow::initSidebar()
         noteInput->setPlaceholderText("Notes for " + fullNepaliDate);
 
 }
+
+
 void MainWindow::setThisDate(date dateToSet)
 {
     monthCombo->setCurrentIndex(months.indexOf(dateToSet.month));
@@ -349,12 +370,51 @@ void MainWindow::setThisDate(date dateToSet)
     updateCalendar();
 
 }
+
 void MainWindow::onButtonClicked() {
     QString note = noteInput->text();
-    qDebug() << "Note: " << note;
-    //Note is the text in the enter note field
-}
+    QSqlDatabase mydb = QSqlDatabase::database();
 
+    if(!mydb.open()) {
+        qDebug() << "Failed to open the database.";
+        return;
+    }
+    else
+    {
+        qDebug()<<"Database is connected";
+    }
+    QString
+        eventDate=clickedDate.year+"-"+clickedDate.month+"-"+clickedDate.day;
+   // qDebug() << "Note for " << eventDate << " is:" << note;
+    QSqlQuery query;
+    query.prepare("INSERT INTO events (date, note) VALUES (:eventDate, :note)");
+    query.bindValue(":eventDate", eventDate);
+    query.bindValue(":note", note);
+    if(query.exec()){
+        qDebug()<<"Data Inserted Successfully";
+
+      //  this->hide();
+    }
+    else {
+        qDebug() << "Error: " << query.lastError().text();
+    }
+
+   query.prepare("SELECT note FROM events WHERE date = :eventDate");
+    query.bindValue(":eventDate", eventDate);
+   if(query.exec()){
+        qDebug()<<"Database is working";
+       //this ->hide();
+    }        // Execute the SELECT query
+else
+   {
+        qDebug() << "Error: " << query.lastError().text();
+   }
+    while (query.next()) {
+       QString note = query.value(0).toString();
+       qDebug() << "Note on " << eventDate << ": " << note;
+        //Display the note on the UI or do something else with it
+    }
+}
 
 
 #endif // SIDEBAR_H
