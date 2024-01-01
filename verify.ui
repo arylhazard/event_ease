@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>verify</class>
+ <widget class="QDialog" name="verify">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Verify</string>
+  </property>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>555</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>49</x>
+      <y>50</y>
+      <width>491</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgba(0,0,0,100);
+border-radius:20px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-1</y>
+      <width>600</width>
+      <height>555</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>400</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/resource/img/_d2c400d3-68a4-4544-bea0-9303c338e05f.jpeg);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>10</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0,0,0,0);
+color: rgba(255,255,255,255);
+
+font: 700 25pt &quot;Myriad Pro Cond&quot;;
+</string>
+    </property>
+    <property name="text">
+     <string>VERIFY</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>80</y>
+      <width>451</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgba(0,0,0,0);
+border:none;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="labelMessage">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>269</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="home">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>140</y>
+       <width>331</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(0,0,0,0);
+border: none;
+border-bottom: 2px solid rgba(225,228,225,255);
+color: rgba(255,255,255,230);
+padding-bottom: 7px;
+font-color:rgba(255,255,255,210);
+font: 700 13pt &quot;Myriad Pro Cond&quot;;
+</string>
+     </property>
+     <property name="placeholderText">
+      <string>Answer</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="book">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>260</y>
+       <width>331</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(0,0,0,0);
+border: none;
+border-bottom: 2px solid rgba(225,228,225,255);
+color: rgba(255,255,255,230);
+padding-bottom: 7px;
+font-color:rgba(255,255,255,210);
+font: 700 13pt &quot;Myriad Pro Cond&quot;;
+</string>
+     </property>
+     <property name="placeholderText">
+      <string>Answer</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>110</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(0,0,0,0);
+color: rgba(255,255,255,255);
+
+font: 700 15pt &quot;Myriad Pro Cond&quot;;
+</string>
+     </property>
+     <property name="text">
+      <string>What is your hometown?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>220</y>
+       <width>261</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(0,0,0,0);
+color: rgba(255,255,255,255);
+
+font: 700 15pt &quot;Myriad Pro Cond&quot;;
+</string>
+     </property>
+     <property name="text">
+      <string>What is your favourite book?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>51</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 700 15pt &quot;Myriad Pro Cond&quot;;
+color:rgba(255,255,255,255)</string>
+     </property>
+     <property name="text">
+      <string>MAIL</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="mail">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>331</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(0,0,0,0);
+border: none;
+border-bottom: 2px solid rgba(225,228,225,255);
+color: rgba(255,255,255,230);
+padding-bottom: 7px;
+font-color:rgba(255,255,255,255);
+font: 700 13pt &quot;Myriad Pro Cond&quot;;
+</string>
+     </property>
+     <property name="placeholderText">
+      <string>myname@gmail.com</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_done_2">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>410</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+border: none;
+border-radius:15px;
+color: rgba(255,255,255,255);
+background-color: rgb(5, 77, 101);
+font : 700 12pt &quot;Myriad Pro Cond&quot;;
+}
+
+QPushButton:Hover
+{
+
+	background-color: rgb(30, 104, 154);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>DONE</string>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>frame_2</zorder>
+   <zorder>label_4</zorder>
+   <zorder>pushButton_done_2</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
