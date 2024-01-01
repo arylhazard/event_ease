@@ -1,6 +1,5 @@
 QT       += core gui sql
-QT +=  multimedia
-QT += core gui multimedia multimediawidgets
+
 
 INCLUDEPATH += /path/to/Qt/5.x.x/your/compiler/include
 

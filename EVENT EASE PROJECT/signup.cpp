@@ -16,8 +16,8 @@ Signup::Signup(QWidget *parent, MainWindow* mainWindow, class question* question
     ui->setupUi(this);
     connect(ui->pushButton_back1, &QPushButton::clicked, this, &Signup::on_pushButton_back1_clicked);
 
-    QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("C:/Users/LENOVO/Desktop/event_ease-main/event_ease-main/Databse/project");
+  /*  QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("/home/okeyy/Desktop/try/event_ease/Databse/project");
 
     if(mydb.open())
     {
@@ -28,7 +28,7 @@ Signup::Signup(QWidget *parent, MainWindow* mainWindow, class question* question
 
         qDebug()<<"Database is Not Connected";
         qDebug()<<"Error:"<<mydb.lastError();
-    }
+    }*/
     QIcon nameIcon(":/resource/img/id-card.png");
     ui->name->addAction(nameIcon, QLineEdit::LeadingPosition);
     ui->name->setClearButtonEnabled(true);

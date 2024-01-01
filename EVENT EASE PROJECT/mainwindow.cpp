@@ -3,8 +3,8 @@
 #include "signup.h"
 #include <QApplication>
 #include <QSplashScreen>
-#include <QMediaPlayer>
-#include <QVideoWidget>
+//#include <QMediaPlayer>
+//#include <QVideoWidget>
 #include <QVBoxLayout>
 #include <QTimer>
 
@@ -14,7 +14,19 @@ MainWindow::MainWindow(QWidget *parent)
 
 {
     ui->setupUi(this); // You need to call this first
+    QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("/home/okeyy/Desktop/try/event_ease/Databse/project");
 
+    if(mydb.open())
+    {
+        qDebug()<<"Database is Connected";
+    }
+    else
+    {
+
+        qDebug()<<"Database is Not Connected";
+        qDebug()<<"Error:"<<mydb.lastError();
+    }
 
    // Forward declare MainWindow and connect the "Back" button to returnToMainWindow
     connect(ui->pushButton_login, &QPushButton::clicked, this, &MainWindow::returnToMainWindow);

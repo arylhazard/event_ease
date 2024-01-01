@@ -1,6 +1,6 @@
 #ifndef QUESTION_H
 #define QUESTION_H
-
+#include "mainwindow.h"
 #include <QDialog>
 class login;
 
@@ -22,6 +22,7 @@ private slots:
 private:
     Ui::question *ui;
     login* login;
+    QSqlDatabase DB;
 };
 
 #endif // QUESTION_H

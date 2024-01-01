@@ -8,7 +8,19 @@ question::question(QWidget *parent, class login* login) :
 {
     ui->setupUi(this);
 
+    QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("/home/okeyy/Desktop/try/event_ease/Databse/project");
 
+    if(mydb.open())
+    {
+        qDebug()<<"Database is Connected";
+    }
+    else
+    {
+
+        qDebug()<<"Database is Not Connected";
+        qDebug()<<"Error:"<<mydb.lastError();
+    }
     QIcon homeIcon(":/resource/img/home.png");
     ui->home->addAction(homeIcon, QLineEdit::LeadingPosition);
     ui->home->setClearButtonEnabled(true);
