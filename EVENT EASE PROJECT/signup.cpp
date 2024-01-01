@@ -2,14 +2,16 @@
 #include "ui_signup.h"
 #include <QPushButton>
 #include "mainwindow.h"
+#include"question.h"
 #include "login.h"
 #include <QSqlQuery>
 #include <QCryptographicHash>
 #include <QMessageBox>
-Signup::Signup(QWidget *parent, MainWindow* mainWindow) :
+Signup::Signup(QWidget *parent, MainWindow* mainWindow, class question* question) :
     QDialog(parent),
     ui(new Ui::Signup),
-    mainWindow(mainWindow)
+    mainWindow(mainWindow),
+    question(question)
 {
     ui->setupUi(this);
     connect(ui->pushButton_back1, &QPushButton::clicked, this, &Signup::on_pushButton_back1_clicked);
@@ -54,6 +56,11 @@ void Signup::returnToMainWindow()
 }
 
 
+void Signup::goToQuestions(){
+    hide();
+    question = new class question(this);
+    question->exec();
+}
 void Signup::on_pushButton_back1_clicked()
 {
     returnToMainWindow();
@@ -117,9 +124,9 @@ void Signup::on_pushButton_next_clicked()
          query.bindValue(":email",email);
          query.bindValue(":password",hashedPassword);
          if(query.exec()){
-             qDebug()<<"Data Inserted Successfully";
-             showMessage("Registration Successful", "You can now log in.", QMessageBox::Information, QMessageBox::Ok);
-                returnToMainWindow();
+             qDebug()<<"Data Inserted Successfully";/*
+             showMessage("Registration Successful", "You can now log in.", QMessageBox::Information, QMessageBox::Ok);*/
+                goToQuestions();
              this->hide();
          }
          else {

@@ -1,7 +1,7 @@
 #include "login.h"
 #include "ui_login.h"
 #include "mainwindow.h"
-
+#include "verify.h"
 #include <QPushButton>
 #include <QCoreApplication>
 #include <QDir>
@@ -9,10 +9,11 @@
 #include <QSqlQuery>
 #include <QCryptographicHash>
 
-login::login(QWidget *parent, MainWindow* mainWindow) :
+login::login(QWidget *parent, MainWindow* mainWindow, class verify* verify):
     QDialog(parent),
     ui(new Ui::login),
-    mainWindow(mainWindow)
+    mainWindow(mainWindow),
+    verify(verify)
 {
     ui->setupUi(this);
     connect(ui->pushButton_back, &QPushButton::clicked, this, &login::on_pushButton_back_clicked);
@@ -115,5 +116,13 @@ void login::on_pushButton_done_clicked()
     }
 
     mydb.close();
+}
+
+
+void login::on_pushButton_clicked()
+{
+    hide();
+    verify = new class verify(this);
+    verify->exec();
 }
 

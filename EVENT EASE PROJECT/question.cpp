@@ -1,9 +1,10 @@
 #include "question.h"
 #include "ui_question.h"
-
-question::question(QWidget *parent) :
+#include"login.h"
+question::question(QWidget *parent, class login* login) :
     QDialog(parent),
-    ui(new Ui::question)
+    ui(new Ui::question),
+    login(login)
 {
     ui->setupUi(this);
 
@@ -22,3 +23,11 @@ question::~question()
 {
     delete ui;
 }
+
+void question::on_pushButton_done_clicked()
+{
+    hide();
+    login = new class login(this);
+    login->exec();
+}
+

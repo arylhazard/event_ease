@@ -1,8 +1,16 @@
 QT       += core gui sql
+QT +=  multimedia
+QT += core gui multimedia multimediawidgets
+
+INCLUDEPATH += /path/to/Qt/5.x.x/your/compiler/include
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
+
+
+
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -16,6 +24,7 @@ SOURCES += \
     question.cpp \
     signup.cpp \
     verify.cpp
+
 
 HEADERS += \
     change.h \

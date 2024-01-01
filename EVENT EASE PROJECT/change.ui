@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>600</width>
     <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Change Password</string>
   </property>
   <widget class="QFrame" name="frame">
    <property name="geometry">
@@ -31,10 +31,10 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>50</y>
-      <width>321</width>
-      <height>411</height>
+      <x>60</x>
+      <y>60</y>
+      <width>481</width>
+      <height>401</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -49,8 +49,8 @@ border-radius:20px;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>400</width>
+      <y>-1</y>
+      <width>600</width>
       <height>500</height>
      </rect>
     </property>
@@ -73,9 +73,9 @@ border-radius:20px;</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>160</x>
       <y>10</y>
-      <width>191</width>
+      <width>291</width>
       <height>31</height>
      </rect>
     </property>
@@ -83,7 +83,7 @@ border-radius:20px;</string>
      <string notr="true">background-color: rgba(0,0,0,0);
 color: rgba(255,255,255,255);
 
-font: 700 20pt &quot;Myriad Pro Cond&quot;;
+font: 700 25pt &quot;Myriad Pro Cond&quot;;
 </string>
     </property>
     <property name="text">
@@ -93,9 +93,9 @@ font: 700 20pt &quot;Myriad Pro Cond&quot;;
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>130</x>
       <y>80</y>
-      <width>281</width>
+      <width>351</width>
       <height>341</height>
      </rect>
     </property>
@@ -109,38 +109,6 @@ border:none;</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton_done">
-     <property name="geometry">
-      <rect>
-       <x>210</x>
-       <y>300</y>
-       <width>61</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton
-{
-border: none;
-color: rgba(255,255,255,255);
-background-color: rgb(5, 77, 101);
-font : 700 12pt &quot;Myriad Pro Cond&quot;;
-}
-
-QPushButton:Hover
-{
-
-	background-color: rgb(30, 104, 154);
-}
-</string>
-     </property>
-     <property name="text">
-      <string>DONE</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="labelMessage">
      <property name="geometry">
       <rect>
@@ -162,12 +130,12 @@ QPushButton:Hover
       <rect>
        <x>40</x>
        <y>76</y>
-       <width>101</width>
+       <width>151</width>
        <height>23</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 700 13pt &quot;Myriad Pro Cond&quot;;
+      <string notr="true">font: 700 15pt &quot;Myriad Pro Cond&quot;;
 color:rgba(255,255,255,255)</string>
      </property>
      <property name="text">
@@ -179,8 +147,8 @@ color:rgba(255,255,255,255)</string>
       <rect>
        <x>40</x>
        <y>210</y>
-       <width>213</width>
-       <height>29</height>
+       <width>251</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -190,7 +158,7 @@ border-bottom: 2px solid rgba(225,228,225,255);
 color: rgba(255,255,255,255);
 padding-bottom: 7px;
 font-color:rgba(255,255,255,255);
-font: 700 11pt &quot;Myriad Pro Cond&quot;;
+font: 700 13pt &quot;Myriad Pro Cond&quot;;
 </string>
      </property>
      <property name="echoMode">
@@ -208,8 +176,8 @@ font: 700 11pt &quot;Myriad Pro Cond&quot;;
       <rect>
        <x>40</x>
        <y>105</y>
-       <width>213</width>
-       <height>29</height>
+       <width>251</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -219,7 +187,7 @@ border-bottom: 2px solid rgba(225,228,225,255);
 color: rgba(255,255,255,255);
 padding-bottom: 7px;
 font-color:rgba(255,255,255,255);
-font: 700 11pt &quot;Myriad Pro Cond&quot;;
+font: 700 13pt &quot;Myriad Pro Cond&quot;;
 </string>
      </property>
      <property name="echoMode">
@@ -237,16 +205,49 @@ font: 700 11pt &quot;Myriad Pro Cond&quot;;
       <rect>
        <x>40</x>
        <y>180</y>
-       <width>151</width>
+       <width>231</width>
        <height>24</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 700 13pt &quot;Myriad Pro Cond&quot;;
+      <string notr="true">font: 700 15pt &quot;Myriad Pro Cond&quot;;
 color:rgba(255,255,255,255)</string>
      </property>
      <property name="text">
       <string>CONFIRM NEW PASSWORD</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_done_2">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>300</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+border: none;
+border-radius:15px;
+color: rgba(255,255,255,255);
+background-color: rgb(5, 77, 101);
+font : 700 12pt &quot;Myriad Pro Cond&quot;;
+}
+
+QPushButton:Hover
+{
+
+	background-color: rgb(30, 104, 154);
+}
+</string>
+     </property>
+     <property name="text">
+      <string>DONE</string>
      </property>
     </widget>
    </widget>

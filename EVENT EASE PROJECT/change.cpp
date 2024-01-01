@@ -1,9 +1,10 @@
 #include "change.h"
 #include "ui_change.h"
-
-change::change(QWidget *parent) :
+#include "login.h"
+change::change(QWidget *parent, class login* login) :
     QDialog(parent),
-    ui(new Ui::change)
+    ui(new Ui::change),
+    login(login)
 {
     ui->setupUi(this);
 
@@ -21,3 +22,11 @@ change::~change()
 {
     delete ui;
 }
+
+void change::on_pushButton_done_2_clicked()
+{
+    hide();
+    login = new class login(this);
+    login->exec();
+}
+

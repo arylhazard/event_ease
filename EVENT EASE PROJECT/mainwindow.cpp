@@ -2,6 +2,12 @@
 #include "login.h"
 #include "signup.h"
 #include <QApplication>
+#include <QSplashScreen>
+#include <QMediaPlayer>
+#include <QVideoWidget>
+#include <QVBoxLayout>
+#include <QTimer>
+
 #include<ui_mainwindow.h>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -9,7 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this); // You need to call this first
 
-    // Forward declare MainWindow and connect the "Back" button to returnToMainWindow
+
+   // Forward declare MainWindow and connect the "Back" button to returnToMainWindow
     connect(ui->pushButton_login, &QPushButton::clicked, this, &MainWindow::returnToMainWindow);
     connect(ui->pushButton_signup, &QPushButton::clicked, this, &MainWindow::returnToMainWindow);
 

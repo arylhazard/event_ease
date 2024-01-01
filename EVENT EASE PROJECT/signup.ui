@@ -66,7 +66,7 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>50</y>
+        <y>60</y>
         <width>521</width>
         <height>411</height>
        </rect>
@@ -102,10 +102,10 @@ font: 700 20pt &quot;Myriad Pro Cond&quot;;
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>110</y>
-        <width>231</width>
-        <height>271</height>
+        <x>150</x>
+        <y>90</y>
+        <width>281</width>
+        <height>291</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -278,10 +278,10 @@ QPushButton:Hover
      <widget class="QPushButton" name="pushButton_next">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>400</y>
+        <x>400</x>
+        <y>410</y>
         <width>80</width>
-        <height>24</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="cursor">
@@ -291,6 +291,7 @@ QPushButton:Hover
        <string notr="true">QPushButton
 {
 border: none;
+border-radius:15px;
 color: rgba(255,255,255,255);
 background-color: rgb(5, 77, 101);
 font : 700 12pt &quot;Myriad Pro Cond&quot;;

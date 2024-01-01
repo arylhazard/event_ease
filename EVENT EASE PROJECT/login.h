@@ -8,7 +8,7 @@
 #include  <QRegularExpression>
 #include <QDialog>
 #include "signup.h"
-
+#include "verify.h"
 class MainWindow;
 
 namespace Ui {
@@ -20,7 +20,7 @@ class login : public QDialog
     Q_OBJECT
 
 public:
-    explicit login(QWidget *parent = nullptr, MainWindow* mainWindow = nullptr);
+    explicit login(QWidget *parent = nullptr, MainWindow* mainWindow = nullptr, class verify* verify = nullptr);
     ~login();
 public slots:
     void returnToMainWindow();
@@ -34,9 +34,13 @@ private slots:
     void on_pushButton_done_clicked();
    void showMessage(const QString &title, const QString &text, QMessageBox::Icon icon = QMessageBox::Information, QFlags<QMessageBox::StandardButton> buttons = QMessageBox::Ok);
 
-private:
+
+   void on_pushButton_clicked();
+
+   private:
     Ui::login *ui;
     MainWindow* mainWindow;
+    verify* verify;
     QSqlDatabase DB_Connection;
 };
 
