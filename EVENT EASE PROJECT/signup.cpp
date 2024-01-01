@@ -2,7 +2,6 @@
 #include "ui_signup.h"
 #include <QPushButton>
 #include "mainwindow.h"
-#include"question.h"
 #include "login.h"
 #include <QSqlQuery>
 #include <QCryptographicHash>

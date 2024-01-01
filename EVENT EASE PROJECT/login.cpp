@@ -31,9 +31,10 @@ login::login(QWidget *parent, MainWindow* mainWindow, class verify* verify):
         qDebug()<<"Database is Not Connected";
         qDebug()<<"Error:"<<mydb.lastError();
     }
-    QIcon userIcon(":/resource/img/user.png"); // Provide the path to your user icon
-    ui->user->addAction(userIcon, QLineEdit::LeadingPosition);
-    ui->user->setClearButtonEnabled(true); // Enable the clear button with the icon
+    QIcon mailIcon(":/resource/img/mail.png");
+    ui->mail->addAction(mailIcon, QLineEdit::LeadingPosition);
+    ui->mail->setClearButtonEnabled(true);
+
 
     QIcon passIcon(":/resource/img/lock.png"); // Provide the path to your user icon
     ui->pass->addAction(passIcon, QLineEdit::LeadingPosition);
@@ -78,7 +79,7 @@ login::~login()
 void login::on_pushButton_done_clicked()
 {
     QSqlDatabase mydb = QSqlDatabase::database();
-    QString username=ui->user->text();
+    QString username=ui->mail->text();
     QString password=ui->pass->text();
 
      QByteArray hashedPassword = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex();
