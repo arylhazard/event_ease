@@ -7,17 +7,17 @@
 #include <QSqlQuery>
 #include <QCryptographicHash>
 #include <QMessageBox>
-Signup::Signup(QWidget *parent, MainWindow* mainWindow, class question* question) :
+Signup::Signup(QWidget *parent, MainWindow* mainWindow, class login* login) :
     QDialog(parent),
     ui(new Ui::Signup),
     mainWindow(mainWindow),
-    question(question)
+    login(login)
 {
     ui->setupUi(this);
     connect(ui->pushButton_back1, &QPushButton::clicked, this, &Signup::on_pushButton_back1_clicked);
 
-  /*  QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("/home/okeyy/Desktop/try/event_ease/Databse/project");
+    QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("C:/Users/LENOVO/Desktop/event_ease-main/event_ease-main/Databse/project");
 
     if(mydb.open())
     {
@@ -28,10 +28,15 @@ Signup::Signup(QWidget *parent, MainWindow* mainWindow, class question* question
 
         qDebug()<<"Database is Not Connected";
         qDebug()<<"Error:"<<mydb.lastError();
-    }*/
-    QIcon nameIcon(":/resource/img/id-card.png");
-    ui->name->addAction(nameIcon, QLineEdit::LeadingPosition);
-    ui->name->setClearButtonEnabled(true);
+    }
+    QIcon homeIcon(":/resource/img/home.png");
+    ui->home->addAction(homeIcon, QLineEdit::LeadingPosition);
+    ui->home->setClearButtonEnabled(true);
+
+
+    QIcon bookIcon(":/resource/img/book.png");
+    ui->book->addAction(bookIcon, QLineEdit::LeadingPosition);
+    ui->book->setClearButtonEnabled(true);
 
     QIcon passIcon(":/resource/img/lock.png");
     ui->pass->addAction(passIcon, QLineEdit::LeadingPosition);
@@ -56,10 +61,10 @@ void Signup::returnToMainWindow()
 }
 
 
-void Signup::goToQuestions(){
+void Signup::goToLogin(){
     hide();
-    question = new class question(this);
-    question->exec();
+    login = new class login(this);
+    login->exec();
 }
 void Signup::on_pushButton_back1_clicked()
 {
@@ -90,10 +95,9 @@ Signup::~Signup()
 
 
 
-void Signup::on_pushButton_next_clicked()
+void Signup::on_pushButton_Signup_clicked()
 {
    QSqlDatabase mydb = QSqlDatabase::database(); // Get the existing database     connection
-    QString username = ui->name->text();
     QString email= ui->mail->text();
     QString password = ui->pass->text();
     QString cpassword = ui->cpass->text();
@@ -111,22 +115,22 @@ void Signup::on_pushButton_next_clicked()
      QSqlQuery query;
         query.prepare("SELECT * FROM users WHERE email=:email OR username=:username");
      query.bindValue(":email",email);
-      query.bindValue(":username",username);
+
      if (query.exec() && query.next()) {
          // Email is already used, show error message
-         qDebug() << "Email or username is already in use";
+         qDebug() << "Email is already in use";
        showMessage("Registration Error", "This email addess is already in use. Please use another or simply login.",
                      QMessageBox::Critical, QMessageBox::Ok);
      }
      else{
          query.prepare("Insert INTO users(username,email,password) VALUES (:username,:email,:password)");
-         query.bindValue(":username",username);
+
          query.bindValue(":email",email);
          query.bindValue(":password",hashedPassword);
          if(query.exec()){
              qDebug()<<"Data Inserted Successfully";/*
              showMessage("Registration Successful", "You can now log in.", QMessageBox::Information, QMessageBox::Ok);*/
-                goToQuestions();
+                goToLogin();
              this->hide();
          }
          else {
@@ -148,25 +152,4 @@ void Signup::on_pushButton_next_clicked()
      }
      mydb.close();
      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

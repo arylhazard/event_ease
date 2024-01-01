@@ -1,5 +1,6 @@
 QT       += core gui sql
-
+QT +=  multimedia
+QT += core gui multimedia multimediawidgets
 
 INCLUDEPATH += /path/to/Qt/5.x.x/your/compiler/include
 
@@ -20,7 +21,6 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
-    question.cpp \
     signup.cpp \
     verify.cpp
 
@@ -29,7 +29,6 @@ HEADERS += \
     change.h \
     login.h \
     mainwindow.h \
-    question.h \
     signup.h \
     verify.h
 
@@ -37,7 +36,6 @@ FORMS += \
     change.ui \
     login.ui \
     mainwindow.ui \
-    question.ui \
     signup.ui \
     verify.ui
 

@@ -10,7 +10,7 @@
 #include <QMessageBox>
 
 class MainWindow;
-class question;
+class login;
 
 namespace Ui {
 class Signup;
@@ -21,22 +21,24 @@ class Signup : public QDialog
     Q_OBJECT
 
 public:
-    explicit Signup(QWidget *parent = nullptr, MainWindow *mainWindow = nullptr, question *question = nullptr);
+    explicit Signup(QWidget *parent = nullptr, MainWindow *mainWindow = nullptr, login *login = nullptr);
     ~Signup();
 
 public slots:
     void returnToMainWindow();
-    void goToQuestions();
+    void goToLogin();
     void on_pushButton_back1_clicked();
-    void on_pushButton_next_clicked();
     bool isValidEmail(const QString &email);
     void showMessage(const QString &title, const QString &text, QMessageBox::Icon icon = QMessageBox::Information, QFlags<QMessageBox::StandardButton> buttons = QMessageBox::Ok);
+
+private slots:
+    void on_pushButton_Signup_clicked();
 
 private:
     Ui::Signup *ui;
     MainWindow *mainWindow;
     QSqlDatabase DB;
-    question *question;
+    login *login;
 };
 
 #endif // SIGNUP_H

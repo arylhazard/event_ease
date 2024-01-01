@@ -19,8 +19,8 @@ login::login(QWidget *parent, MainWindow* mainWindow, class verify* verify):
     connect(ui->pushButton_back, &QPushButton::clicked, this, &login::on_pushButton_back_clicked);
 
 
-   /*QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
-   mydb.setDatabaseName("/home/okeyy/Desktop/try/event_ease/Databse/project");
+   QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
+   mydb.setDatabaseName("C:/Users/LENOVO/Desktop/event_ease-main/event_ease-main/Databse/project");
     if(mydb.open())
     {
         qDebug()<<"Database is Connected";
@@ -30,10 +30,10 @@ login::login(QWidget *parent, MainWindow* mainWindow, class verify* verify):
 
         qDebug()<<"Database is Not Connected";
         qDebug()<<"Error:"<<mydb.lastError();
-    }*/
+    }
     QIcon userIcon(":/resource/img/user.png"); // Provide the path to your user icon
-    ui->email->addAction(userIcon, QLineEdit::LeadingPosition);
-    ui->email->setClearButtonEnabled(true); // Enable the clear button with the icon
+    ui->user->addAction(userIcon, QLineEdit::LeadingPosition);
+    ui->user->setClearButtonEnabled(true); // Enable the clear button with the icon
 
     QIcon passIcon(":/resource/img/lock.png"); // Provide the path to your user icon
     ui->pass->addAction(passIcon, QLineEdit::LeadingPosition);
@@ -78,7 +78,7 @@ login::~login()
 void login::on_pushButton_done_clicked()
 {
     QSqlDatabase mydb = QSqlDatabase::database();
-    QString email=ui->email->text();
+    QString username=ui->user->text();
     QString password=ui->pass->text();
 
      QByteArray hashedPassword = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex();
@@ -93,8 +93,8 @@ void login::on_pushButton_done_clicked()
     }
 
     QSqlQuery query;
-    query.prepare("SELECT id FROM users WHERE email = :email AND password = :password");
-    query.bindValue(":email", email);
+    query.prepare("SELECT id FROM users WHERE username = :username AND password = :password");
+    query.bindValue(":username", username);
     //query.bindValue(":password", password);
     query.bindValue(":password",hashedPassword);
 

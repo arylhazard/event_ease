@@ -171,7 +171,7 @@ border-radius:60px;</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="email">
+    <widget class="QLineEdit" name="user">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -243,7 +243,7 @@ font: 700 11pt &quot;Myriad Pro Cond&quot;;
      </property>
     </widget>
     <zorder>label_3</zorder>
-    <zorder>email</zorder>
+    <zorder>user</zorder>
     <zorder>pass</zorder>
     <zorder>pushButton_done</zorder>
     <zorder>labelMessage</zorder>
