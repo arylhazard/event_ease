@@ -1,7 +1,7 @@
 #include "login.h"
 #include "ui_login.h"
 #include "mainwindow.h"
-#include "verify.h"
+#include "maincal.h"
 #include <QPushButton>
 #include <QCoreApplication>
 #include <QDir>
@@ -9,18 +9,17 @@
 #include <QSqlQuery>
 #include <QCryptographicHash>
 
-login::login(QWidget *parent, MainWindow* mainWindow, class verify* verify):
+login::login(QWidget *parent, MainWindow* mainWindow) :
     QDialog(parent),
     ui(new Ui::login),
-    mainWindow(mainWindow),
-    verify(verify)
+    mainWindow(mainWindow)
 {
     ui->setupUi(this);
     connect(ui->pushButton_back, &QPushButton::clicked, this, &login::on_pushButton_back_clicked);
 
 
    QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
-   mydb.setDatabaseName("C:/Users/LENOVO/Desktop/event_ease-main/event_ease-main/Databse/project");
+   mydb.setDatabaseName("/home/okeyy/Desktop/prabin/database/project");
     if(mydb.open())
     {
         qDebug()<<"Database is Connected";
@@ -31,10 +30,9 @@ login::login(QWidget *parent, MainWindow* mainWindow, class verify* verify):
         qDebug()<<"Database is Not Connected";
         qDebug()<<"Error:"<<mydb.lastError();
     }
-    QIcon mailIcon(":/resource/img/mail.png");
-    ui->mail->addAction(mailIcon, QLineEdit::LeadingPosition);
-    ui->mail->setClearButtonEnabled(true);
-
+    QIcon userIcon(":/resource/img/mail.png"); // Provide the path to your user icon
+    ui->user->addAction(userIcon, QLineEdit::LeadingPosition);
+    ui->user->setClearButtonEnabled(true); // Enable the clear button with the icon
 
     QIcon passIcon(":/resource/img/lock.png"); // Provide the path to your user icon
     ui->pass->addAction(passIcon, QLineEdit::LeadingPosition);
@@ -79,7 +77,7 @@ login::~login()
 void login::on_pushButton_done_clicked()
 {
     QSqlDatabase mydb = QSqlDatabase::database();
-    QString username=ui->mail->text();
+    QString email=ui->user->text();
     QString password=ui->pass->text();
 
      QByteArray hashedPassword = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex();
@@ -94,17 +92,29 @@ void login::on_pushButton_done_clicked()
     }
 
     QSqlQuery query;
-    query.prepare("SELECT id FROM users WHERE username = :username AND password = :password");
-    query.bindValue(":username", username);
+    query.prepare("SELECT userid FROM users WHERE email = :email AND password = :password");
+    query.bindValue(":email", email);
     //query.bindValue(":password", password);
     query.bindValue(":password",hashedPassword);
-
+    QString userid;
     if (query.exec() && query.next()) {
         // Login successful
         qDebug() << "Login successful";
+userid = query.value(0).toString();
+            MainCal *mainCal = new MainCal(userid);
+QFile styleFile("./assets/styles.qss");
+if (!styleFile.open(QFile::ReadOnly | QFile::Text)) {
+    qDebug() << "Failed to open stylesheet file.";
+} else {
+    QTextStream stream(&styleFile);
+    QString style = stream.readAll();
+    styleFile.close();
 
-        // Redirect to another window (you can replace this part with your own logic)
-       // this->hide();
+    // Apply the stylesheet to the mainCal object
+    mainCal->setStyleSheet(style);
+}
+    mainCal->show();
+    this->hide();
 
 
         // Close the login window
@@ -117,13 +127,5 @@ void login::on_pushButton_done_clicked()
     }
 
     mydb.close();
-}
-
-
-void login::on_pushButton_clicked()
-{
-    hide();
-    verify = new class verify(this);
-    verify->exec();
 }
 

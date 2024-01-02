@@ -8,9 +8,7 @@
 #include <QtSql>
 #include <QRegularExpression>
 #include <QMessageBox>
-
 class MainWindow;
-class login;
 
 namespace Ui {
 class Signup;
@@ -21,22 +19,27 @@ class Signup : public QDialog
     Q_OBJECT
 
 public:
-    explicit Signup(QWidget *parent = nullptr, MainWindow *mainWindow = nullptr, login *login = nullptr);
+    explicit Signup(QWidget *parent = nullptr, MainWindow* mainWindow = nullptr,class login* login=nullptr);
     ~Signup();
 
 public slots:
     void returnToMainWindow();
     void goToLogin();
-    void on_pushButton_back1_clicked();
-    bool isValidEmail(const QString &email);
-    void showMessage(const QString &title, const QString &text, QMessageBox::Icon icon = QMessageBox::Information, QFlags<QMessageBox::StandardButton> buttons = QMessageBox::Ok);
 
 private slots:
-    void on_pushButton_Signup_clicked();
+    void on_pushButton_back1_clicked();
+
+
+
+    void on_pushButton_next_clicked();
+
+     bool isValidEmail(const QString &email);
+    void showMessage(const QString &title, const QString &text, QMessageBox::Icon icon = QMessageBox::Information, QFlags<QMessageBox::StandardButton> buttons = QMessageBox::Ok);
+
 
 private:
     Ui::Signup *ui;
-    MainWindow *mainWindow;
+    MainWindow* mainWindow;
     QSqlDatabase DB;
     login *login;
 };

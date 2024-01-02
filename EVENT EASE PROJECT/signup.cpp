@@ -6,7 +6,7 @@
 #include <QSqlQuery>
 #include <QCryptographicHash>
 #include <QMessageBox>
-Signup::Signup(QWidget *parent, MainWindow* mainWindow, class login* login) :
+Signup::Signup(QWidget *parent, MainWindow* mainWindow,class login *login) :
     QDialog(parent),
     ui(new Ui::Signup),
     mainWindow(mainWindow),
@@ -16,7 +16,7 @@ Signup::Signup(QWidget *parent, MainWindow* mainWindow, class login* login) :
     connect(ui->pushButton_back1, &QPushButton::clicked, this, &Signup::on_pushButton_back1_clicked);
 
     QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("C:/Users/LENOVO/Desktop/event_ease-main/event_ease-main/Databse/project");
+    mydb.setDatabaseName("/home/okeyy/Desktop/prabin/database/project");
 
     if(mydb.open())
     {
@@ -28,14 +28,9 @@ Signup::Signup(QWidget *parent, MainWindow* mainWindow, class login* login) :
         qDebug()<<"Database is Not Connected";
         qDebug()<<"Error:"<<mydb.lastError();
     }
-    QIcon homeIcon(":/resource/img/home.png");
-    ui->home->addAction(homeIcon, QLineEdit::LeadingPosition);
-    ui->home->setClearButtonEnabled(true);
-
-
-    QIcon bookIcon(":/resource/img/book.png");
-    ui->book->addAction(bookIcon, QLineEdit::LeadingPosition);
-    ui->book->setClearButtonEnabled(true);
+    QIcon nameIcon(":/resource/img/id-card.png");
+    ui->name->addAction(nameIcon, QLineEdit::LeadingPosition);
+    ui->name->setClearButtonEnabled(true);
 
     QIcon passIcon(":/resource/img/lock.png");
     ui->pass->addAction(passIcon, QLineEdit::LeadingPosition);
@@ -58,13 +53,13 @@ void Signup::returnToMainWindow()
         mainWindow->show();
     }
 }
-
-
-void Signup::goToLogin(){
+void Signup::goToLogin()
+{
     hide();
-    login = new class login(this);
+    login =new class login(this);
     login->exec();
 }
+
 void Signup::on_pushButton_back1_clicked()
 {
     returnToMainWindow();
@@ -94,14 +89,14 @@ Signup::~Signup()
 
 
 
-void Signup::on_pushButton_Signup_clicked()
+void Signup::on_pushButton_next_clicked()
 {
-    QSqlDatabase mydb = QSqlDatabase::database(); // Get the existing database     connection
+   QSqlDatabase mydb = QSqlDatabase::database(); // Get the existing database     connection
+    QString username = ui->name->text();
     QString email= ui->mail->text();
     QString password = ui->pass->text();
     QString cpassword = ui->cpass->text();
-    QString security1=ui->home->text();
-    QString security2=ui->book->text();
+
     QByteArray hashedPassword = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex();
 
     if(!mydb.open()) {
@@ -109,48 +104,69 @@ void Signup::on_pushButton_Signup_clicked()
         return;
     }
     if (isValidEmail(email)) {
-        qDebug() << "Email is valid!";
+       qDebug() << "Email is valid!";
 
         if(password==cpassword && password.length()>=6){
-            QSqlQuery query;
-            query.prepare("SELECT * FROM users WHERE email=:email");
-            query.bindValue(":email",email);
-
-            if (query.exec() && query.next()) {
-                // Email is already used, show error message
-                qDebug() << "Email is already in use";
-                showMessage("Registration Error", "This email addess is already in use. Please use another or simply login.",
-                            QMessageBox::Critical, QMessageBox::Ok);
-            }
-            else{
-                query.prepare("Insert INTO users(email,password,security1,security2) VALUES (:email,:password,:security1,:security2)");
-
-                query.bindValue(":email",email);
-                query.bindValue(":password",hashedPassword);
-                query.bindValue(":security1",security1);
-                query.bindValue(":security2",security2);
-                if(query.exec()){
-                    qDebug()<<"Data Inserted Successfully";/*
-             showMessage("Registration Successful", "You can now log in.", QMessageBox::Information, QMessageBox::Ok);*/
-                    goToLogin();
-                    this->hide();
-                }
-                else {
-                    qDebug() << "Error: " << query.lastError().text();
-                }
-            }
+     QSqlQuery query;
+        query.prepare("SELECT * FROM users WHERE email=:email OR username=:username");
+     query.bindValue(":email",email);
+      query.bindValue(":username",username);
+     if (query.exec() && query.next()) {
+         // Email is already used, show error message
+         qDebug() << "Email or username is already in use";
+       showMessage("Registration Error", "This email addess is already in use. Please use another or simply login.",
+                     QMessageBox::Critical, QMessageBox::Ok);
+     }
+     else{
+         query.prepare("Insert INTO users(username,email,password) VALUES (:username,:email,:password)");
+         query.bindValue(":username",username);
+         query.bindValue(":email",email);
+         query.bindValue(":password",hashedPassword);
+         if(query.exec()){
+             qDebug()<<"Data Inserted Successfully";
+             showMessage("Registration Successful", "You can now log in.", QMessageBox::Information, QMessageBox::Ok);
+                //returnToMainWindow();
+             goToLogin();
+             this->hide();
+         }
+         else {
+             qDebug() << "Error: " << query.lastError().text();
+         }
+         }
         }
-        else{
-            //password wrong error thrown//
-            showMessage("Registration Error","Password and Confirm Password didnt match and password must be at least 6 characters long,",QMessageBox::Warning,QMessageBox::Ok);
-
-        }
-        //Tyo is Valid username ko lagi//
-
-    }
     else{
-        qDebug()<<"Invalid email";
-        showMessage("Registration Error","The email address is not valid.Please enter valid email.",QMessageBox::Critical,QMessageBox::Ok);
+        //password wrong error thrown//
+        showMessage("Registration Error","Password and Confirm Password didnt match and password must be at least 6 characters long,",QMessageBox::Warning,QMessageBox::Ok);
+
+     }
+         //Tyo is Valid username ko lagi//
+
     }
-    mydb.close();
-}
+     else{
+         qDebug()<<"Invalid email";
+         showMessage("Registration Error","The email address is not valid.Please enter valid email.",QMessageBox::Critical,QMessageBox::Ok);
+     }
+     mydb.close();
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

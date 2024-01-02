@@ -63,7 +63,7 @@ public:
         label->setAlignment(Qt::AlignCenter);
         label_2 = new QLabel(frame);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(40, 60, 521, 411));
+        label_2->setGeometry(QRect(40, 50, 521, 411));
         label_2->setStyleSheet(QString::fromUtf8("background:rgba(0,0,0,100);\n"
 "border-radius:20px;"));
         label_3 = new QLabel(frame);
@@ -76,7 +76,7 @@ public:
 ""));
         frame_2 = new QFrame(frame);
         frame_2->setObjectName("frame_2");
-        frame_2->setGeometry(QRect(150, 90, 281, 291));
+        frame_2->setGeometry(QRect(200, 110, 231, 271));
         frame_2->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background:rgba(0,0,0,0)"));
         frame_2->setFrameShape(QFrame::StyledPanel);
@@ -182,12 +182,11 @@ public:
 "}"));
         pushButton_next = new QPushButton(frame);
         pushButton_next->setObjectName("pushButton_next");
-        pushButton_next->setGeometry(QRect(400, 410, 80, 31));
+        pushButton_next->setGeometry(QRect(360, 400, 80, 24));
         pushButton_next->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_next->setStyleSheet(QString::fromUtf8("QPushButton\n"
 "{\n"
 "border: none;\n"
-"border-radius:15px;\n"
 "color: rgba(255,255,255,255);\n"
 "background-color: rgb(5, 77, 101);\n"
 "font : 700 12pt \"Myriad Pro Cond\";\n"
@@ -224,7 +223,7 @@ public:
         label_7->setText(QCoreApplication::translate("Signup", "CONFIRM PASSWORD*", nullptr));
         cpass->setPlaceholderText(QCoreApplication::translate("Signup", "CONFIRM PASSWORD", nullptr));
         pushButton_back1->setText(QString());
-        pushButton_next->setText(QCoreApplication::translate("Signup", "NEXT", nullptr));
+        pushButton_next->setText(QCoreApplication::translate("Signup", "SIGN UP", nullptr));
     } // retranslateUi
 
 };

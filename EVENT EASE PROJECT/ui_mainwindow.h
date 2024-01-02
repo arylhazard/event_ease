@@ -71,7 +71,6 @@ public:
         pushButton_login->setStyleSheet(QString::fromUtf8("QPushButton\n"
 "{\n"
 "border: none;\n"
-"border-radius:15px;\n"
 "color: rgba(255,255,255,255);\n"
 "background-color: rgb(5, 77, 101);\n"
 "font : 700 12pt \"Myriad Pro Cond\";\n"
@@ -90,7 +89,6 @@ public:
         pushButton_signup->setStyleSheet(QString::fromUtf8("QPushButton\n"
 "{\n"
 "border: none;\n"
-"border-radius:15px;\n"
 "color: rgba(255,255,255,255);\n"
 "background-color: rgb(5, 77, 101);\n"
 "font : 700 12pt \"Myriad Pro Cond\";\n"
@@ -104,7 +102,7 @@ public:
 ""));
         label_2 = new QLabel(frame);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(230, 0, 111, 41));
+        label_2->setGeometry(QRect(210, 0, 171, 41));
         label_2->setStyleSheet(QString::fromUtf8("background-color: rgba(0,0,0,0);\n"
 "color: rgba(255,255,255,255);\n"
 "\n"
@@ -112,7 +110,7 @@ public:
 ""));
         label_4 = new QLabel(frame);
         label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(150, 60, 321, 31));
+        label_4->setGeometry(QRect(110, 50, 391, 31));
         label_4->setStyleSheet(QString::fromUtf8("background-color: rgba(0,0,0,0);\n"
 "color: rgba(255,255,255,255);\n"
 "\n"

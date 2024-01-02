@@ -41,7 +41,7 @@ static constexpr auto qt_meta_stringdata_CLASSSignupENDCLASS = QtMocHelpers::str
     "Signup",
     "returnToMainWindow",
     "",
-    "goToQuestions",
+    "goToLogin",
     "on_pushButton_back1_clicked",
     "on_pushButton_next_clicked",
     "isValidEmail",
@@ -60,7 +60,7 @@ struct qt_meta_stringdata_CLASSSignupENDCLASS_t {
     char stringdata0[7];
     char stringdata1[19];
     char stringdata2[1];
-    char stringdata3[14];
+    char stringdata3[10];
     char stringdata4[28];
     char stringdata5[27];
     char stringdata6[13];
@@ -80,23 +80,23 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSSignupENDCLASS_t qt_meta_string
         QT_MOC_LITERAL(0, 6),  // "Signup"
         QT_MOC_LITERAL(7, 18),  // "returnToMainWindow"
         QT_MOC_LITERAL(26, 0),  // ""
-        QT_MOC_LITERAL(27, 13),  // "goToQuestions"
-        QT_MOC_LITERAL(41, 27),  // "on_pushButton_back1_clicked"
-        QT_MOC_LITERAL(69, 26),  // "on_pushButton_next_clicked"
-        QT_MOC_LITERAL(96, 12),  // "isValidEmail"
-        QT_MOC_LITERAL(109, 5),  // "email"
-        QT_MOC_LITERAL(115, 11),  // "showMessage"
-        QT_MOC_LITERAL(127, 5),  // "title"
-        QT_MOC_LITERAL(133, 4),  // "text"
-        QT_MOC_LITERAL(138, 17),  // "QMessageBox::Icon"
-        QT_MOC_LITERAL(156, 4),  // "icon"
-        QT_MOC_LITERAL(161, 35),  // "QFlags<QMessageBox::StandardB..."
-        QT_MOC_LITERAL(197, 7)   // "buttons"
+        QT_MOC_LITERAL(27, 9),  // "goToLogin"
+        QT_MOC_LITERAL(37, 27),  // "on_pushButton_back1_clicked"
+        QT_MOC_LITERAL(65, 26),  // "on_pushButton_next_clicked"
+        QT_MOC_LITERAL(92, 12),  // "isValidEmail"
+        QT_MOC_LITERAL(105, 5),  // "email"
+        QT_MOC_LITERAL(111, 11),  // "showMessage"
+        QT_MOC_LITERAL(123, 5),  // "title"
+        QT_MOC_LITERAL(129, 4),  // "text"
+        QT_MOC_LITERAL(134, 17),  // "QMessageBox::Icon"
+        QT_MOC_LITERAL(152, 4),  // "icon"
+        QT_MOC_LITERAL(157, 35),  // "QFlags<QMessageBox::StandardB..."
+        QT_MOC_LITERAL(193, 7)   // "buttons"
     },
     "Signup",
     "returnToMainWindow",
     "",
-    "goToQuestions",
+    "goToLogin",
     "on_pushButton_back1_clicked",
     "on_pushButton_next_clicked",
     "isValidEmail",
@@ -129,12 +129,12 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSSignupENDCLASS[] = {
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
        1,    0,   62,    2, 0x0a,    1 /* Public */,
        3,    0,   63,    2, 0x0a,    2 /* Public */,
-       4,    0,   64,    2, 0x0a,    3 /* Public */,
-       5,    0,   65,    2, 0x0a,    4 /* Public */,
-       6,    1,   66,    2, 0x0a,    5 /* Public */,
-       8,    4,   69,    2, 0x0a,    7 /* Public */,
-       8,    3,   78,    2, 0x2a,   12 /* Public | MethodCloned */,
-       8,    2,   85,    2, 0x2a,   16 /* Public | MethodCloned */,
+       4,    0,   64,    2, 0x08,    3 /* Private */,
+       5,    0,   65,    2, 0x08,    4 /* Private */,
+       6,    1,   66,    2, 0x08,    5 /* Private */,
+       8,    4,   69,    2, 0x08,    7 /* Private */,
+       8,    3,   78,    2, 0x28,   12 /* Private | MethodCloned */,
+       8,    2,   85,    2, 0x28,   16 /* Private | MethodCloned */,
 
  // slots: parameters
     QMetaType::Void,
@@ -160,7 +160,7 @@ Q_CONSTINIT const QMetaObject Signup::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<Signup, std::true_type>,
         // method 'returnToMainWindow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'goToQuestions'
+        // method 'goToLogin'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_back1_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -195,7 +195,7 @@ void Signup::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         (void)_t;
         switch (_id) {
         case 0: _t->returnToMainWindow(); break;
-        case 1: _t->goToQuestions(); break;
+        case 1: _t->goToLogin(); break;
         case 2: _t->on_pushButton_back1_clicked(); break;
         case 3: _t->on_pushButton_next_clicked(); break;
         case 4: { bool _r = _t->isValidEmail((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));

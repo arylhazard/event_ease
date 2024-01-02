@@ -29,11 +29,10 @@ public:
     QFrame *frame_2;
     QPushButton *pushButton_done;
     QLabel *label_3;
-    QLineEdit *email;
+    QLineEdit *user;
     QLineEdit *pass;
     QLabel *labelMessage;
     QPushButton *pushButton_back;
-    QPushButton *pushButton;
 
     void setupUi(QDialog *login)
     {
@@ -49,7 +48,7 @@ public:
         frame->setFrameShadow(QFrame::Raised);
         label_2 = new QLabel(frame);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(40, 60, 521, 411));
+        label_2->setGeometry(QRect(40, 50, 521, 411));
         label_2->setStyleSheet(QString::fromUtf8("background:rgba(0,0,0,100);\n"
 "border-radius:20px;"));
         label = new QLabel(frame);
@@ -75,12 +74,11 @@ public:
         frame_2->setFrameShadow(QFrame::Raised);
         pushButton_done = new QPushButton(frame_2);
         pushButton_done->setObjectName("pushButton_done");
-        pushButton_done->setGeometry(QRect(200, 290, 71, 31));
+        pushButton_done->setGeometry(QRect(200, 290, 61, 24));
         pushButton_done->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_done->setStyleSheet(QString::fromUtf8("QPushButton\n"
 "{\n"
 "border: none;\n"
-"border-radius:15px;\n"
 "color: rgba(255,255,255,255);\n"
 "background-color: rgb(5, 77, 101);\n"
 "font : 700 12pt \"Myriad Pro Cond\";\n"
@@ -98,10 +96,10 @@ public:
         label_3->setMinimumSize(QSize(120, 120));
         label_3->setStyleSheet(QString::fromUtf8("border-image: url(:/resource/img/user.jpeg);\n"
 "border-radius:60px;"));
-        email = new QLineEdit(frame_2);
-        email->setObjectName("email");
-        email->setGeometry(QRect(40, 170, 171, 29));
-        email->setStyleSheet(QString::fromUtf8("background-color: rgba(0,0,0,0);\n"
+        user = new QLineEdit(frame_2);
+        user->setObjectName("user");
+        user->setGeometry(QRect(40, 170, 171, 29));
+        user->setStyleSheet(QString::fromUtf8("background-color: rgba(0,0,0,0);\n"
 "border: none;\n"
 "border-bottom: 2px solid rgba(225,228,225,255);\n"
 "color: rgba(255,255,255,230);\n"
@@ -109,7 +107,7 @@ public:
 "font-color:rgba(255,255,255,210);\n"
 "font: 700 11pt \"Myriad Pro Cond\";\n"
 ""));
-        email->setClearButtonEnabled(true);
+        user->setClearButtonEnabled(true);
         pass = new QLineEdit(frame_2);
         pass->setObjectName("pass");
         pass->setGeometry(QRect(40, 220, 171, 29));
@@ -128,7 +126,7 @@ public:
         labelMessage->setGeometry(QRect(40, 269, 171, 21));
         labelMessage->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_3->raise();
-        email->raise();
+        user->raise();
         pass->raise();
         pushButton_done->raise();
         labelMessage->raise();
@@ -145,31 +143,11 @@ public:
 "	\n"
 "	border-image: url(:/resource/img/jkbjkbe.jpeg);\n"
 "}"));
-        pushButton = new QPushButton(frame);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(350, 420, 121, 31));
-        pushButton->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton->setStyleSheet(QString::fromUtf8("QPushButton\n"
-"{\n"
-"border: none;\n"
-"color: rgb(6, 100, 133);\n"
-"background-color: rgba(0, 0, 0,0);\n"
-"text-decoration:underline;\n"
-"font : 700 12pt \"Myriad Pro Cond\";\n"
-"}\n"
-"\n"
-"QPushButton:Hover\n"
-"{\n"
-"\n"
-"color: rgba(255,255,255,255)\n"
-"}\n"
-""));
         label->raise();
         label_2->raise();
         frame_2->raise();
         label_4->raise();
         pushButton_back->raise();
-        pushButton->raise();
 
         retranslateUi(login);
 
@@ -184,11 +162,10 @@ public:
         label_4->setText(QCoreApplication::translate("login", "LOGIN", nullptr));
         pushButton_done->setText(QCoreApplication::translate("login", "DONE", nullptr));
         label_3->setText(QString());
-        email->setPlaceholderText(QCoreApplication::translate("login", "Username", nullptr));
+        user->setPlaceholderText(QCoreApplication::translate("login", "email", nullptr));
         pass->setPlaceholderText(QCoreApplication::translate("login", "Password", nullptr));
         labelMessage->setText(QString());
         pushButton_back->setText(QString());
-        pushButton->setText(QCoreApplication::translate("login", "Forgot Password", nullptr));
     } // retranslateUi
 
 };
