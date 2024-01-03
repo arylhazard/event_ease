@@ -19,7 +19,7 @@ login::login(QWidget *parent, MainWindow* mainWindow) :
 
 
    QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
-   mydb.setDatabaseName("/home/okeyy/Desktop/prabin/database/project");
+   mydb.setDatabaseName("../database/project");
     if(mydb.open())
     {
         qDebug()<<"Database is Connected";
