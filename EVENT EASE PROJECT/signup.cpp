@@ -16,7 +16,7 @@ Signup::Signup(QWidget *parent, MainWindow* mainWindow,class login *login) :
     connect(ui->pushButton_back1, &QPushButton::clicked, this, &Signup::on_pushButton_back1_clicked);
 
     QSqlDatabase mydb=QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("/home/okeyy/Desktop/prabin/database/project");
+    mydb.setDatabaseName("../database/project");
 
     if(mydb.open())
     {
